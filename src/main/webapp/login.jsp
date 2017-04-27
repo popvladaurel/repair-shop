@@ -10,8 +10,8 @@
         <img src="images/avatar.png">
         <form class="standardform" action="loginServlet" method="POST">
             <div>
-                <input class="inputbox" type="text" placeholder="Enter Username" name="name" autofocus required>
-                <input class="inputbox" type="password" placeholder="Enter Password" name="pass" required>
+                <input class="inputbox" type="text" placeholder="Enter Username" name="username" autofocus required>
+                <input class="inputbox" type="password" placeholder="Enter Password" name="password" required>
                 <button class="button" style="padding-top:0px; height:40px;" type="submit">Login</button><br>
                 <button class="button" style="background-color:#f44336; padding-top:0px; height:40px;" type="reset">Clear</button>
             </div>

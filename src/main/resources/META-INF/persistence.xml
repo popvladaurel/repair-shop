@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+<persistence version="2.1"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence ">
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                                http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd">
 
-    <persistence-unit name="repairshop" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="RepairShop" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <non-jta-data-source>java:/comp/env/jdbc/RepairShop</non-jta-data-source>
 
-        <class>ro.vlad.entities.Account</class>
+        <class>ro.vlad.security.UserAccount</class>
 
         <properties>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.jdbc.batch_size" value="20"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.cache.use_query_cache" value="false"/>
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.jdbc.batch_size" value="20" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.cache.use_query_cache" value="false" />
             <property name="hibernate.cache.use_second_level_cache" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
         </properties>

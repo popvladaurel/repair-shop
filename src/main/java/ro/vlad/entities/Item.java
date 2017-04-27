@@ -6,6 +6,5 @@ public abstract class Item {
 
     public Item(String manufacturer, String model) {
         this.manufacturer = manufacturer;
-        this.model = model;
-    }
+        this.model = model;}
 }

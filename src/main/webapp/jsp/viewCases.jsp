@@ -13,5 +13,8 @@
             response.sendRedirect("../login.jsp");
             System.out.println("\n" + "Not authenticated, returning to login.");}
         %>
+        <h1>View Cases</h1>
+        <br>
+        <h2>(under construction)</h2>
 	</body>
 </html>

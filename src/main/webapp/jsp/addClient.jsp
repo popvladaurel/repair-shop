@@ -14,4 +14,7 @@
             System.out.println("\n" + "Not authenticated, returning to login.");}
         %>
 	</body>
+	<h1>Add Client</h1>
+	<br>
+	<h2>(under construction)</h2>
 </html>
