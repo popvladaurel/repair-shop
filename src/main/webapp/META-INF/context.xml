@@ -1,0 +1,9 @@
+<Context>
+    <Resource name="jdbc/RepairShop"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/RepairShop"
+              username="postgres"
+              password="postgres"/>
+</Context>

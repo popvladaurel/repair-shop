@@ -1,0 +1,82 @@
+html {
+    background-color: #292c33;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-origin: center;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;}
+
+h1 {
+  color: #FFFFCC;
+  text-align: center;
+  font-size: 8vw;}
+
+.phoneContent {
+    display: block;}
+
+@media all and (max-width: 736px) {
+    .phoneContent {display: none;}}
+
+.standardform {
+    border: 3px solid #f1f1f1;
+    text-align: center;
+    background-color: #FFFFCC;
+    width: 280px;
+    padding: 10px;
+    margin: 0 auto;
+    border: 1px solid #56B4EF;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);}
+
+.inputbox {
+    width: 200px;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #56B4EF;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);}
+
+.inputnumber {
+    text-align: center;
+    width: 195px;
+    margin: 10px 2px;
+    border-radius: 4px;}
+
+.opencasebuton {
+    background-image: url(../images/newtask.png);}
+
+.addclientbutton {
+    background-image: url(../images/addclient.png);}
+
+.additembutton {
+    background-image: url(../images/additem.png);}
+
+.viewcasesbutton {
+    background-image: url(../images/viewcases.png);}
+
+.button {
+    transition: background-color 0.4s;
+    background-color: #FFFFCC;
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding-top: 70px;
+    align-content: center;
+    margin: 10px 10px;
+    height: 90px;
+    width: 222px;
+    border-radius: 5px;}
+
+.button:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);
+    transform: scale(1.010);
+    outline: none;}
+
+.error {
+    transition: background-color 1s;
+    background-color: #FF0000;
+    color: #FFFFFF;}
+
+.success {
+    background-color: #33FF33;
+    color: #000000;}
