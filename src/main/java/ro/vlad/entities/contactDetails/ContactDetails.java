@@ -10,6 +10,12 @@ public class ContactDetails {
     @Column (name = "phonenumber") private String phoneNumber;
     @Column (name = "email") private String email;
 
+    public ContactDetails() {}
+
+    public ContactDetails(String phoneNumber, String email) {
+        this.phoneNumber = phoneNumber;
+        this.email = email;}
+
     public void setContactDetailsId(Long contactDetailsId) {this.contactDetailsId = contactDetailsId;}
     public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
     public void setEmail(String email) {this.email = email;}

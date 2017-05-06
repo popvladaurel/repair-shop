@@ -14,11 +14,18 @@ public class UserAccount {
     @Column (name = "passwordHash") private String passwordHash;
     @OneToOne (cascade = CascadeType.ALL) private Person person;
 
-    public void setAccountId(String accountName) {this.accountId = accountName;}
-    public void setPasswordHash(String passwordHash) {this.passwordHash = passwordHash;}
-    public void setPerson(Person person) {this.person = person;}
+    public UserAccount() {}
 
-    public String getPasswordHash() {return passwordHash;}
+    public UserAccount(String accountId, String passwordHash, Person person) {
+        this.accountId = accountId;
+        this.passwordHash = passwordHash;
+        this.person = person;}
+
+    void setAccountId(String accountName) {this.accountId = accountName;}
+    void setPasswordHash(String passwordHash) {this.passwordHash = passwordHash;}
+    void setPerson(Person person) {this.person = person;}
+
     public String getAccountId() {return accountId;}
+    public String getPasswordHash() {return passwordHash;}
     public Person getPerson() {return person;}
 }

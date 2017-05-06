@@ -22,12 +22,12 @@ public class CUICheckerOpenAPI {
             HttpResponse response = httpClient.execute(request);
             BufferedReader output = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
             JSONObject companyJSON = new JSONObject(output.readLine());
+            System.out.println(companyJSON.toString());
             return companyJSON;}
         catch (JSONException e) {
             System.out.println("No Internet connection or OpenAPI subscription expired.");
             return null;}
         catch (NullPointerException e) {
-            System.out.println("NullPointerException CUI invalid. " + CUI);
             return null;}
         catch (UnsupportedEncodingException e) {
             e.printStackTrace();

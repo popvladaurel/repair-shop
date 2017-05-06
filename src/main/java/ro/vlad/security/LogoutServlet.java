@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/logoutServlet")
+@WebServlet(urlPatterns = "/logoutServlet", name = "logoutServlet")
 public class LogoutServlet extends HttpServlet {
 
     @Override
@@ -16,8 +16,11 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         session.setAttribute("authenticatedUser", null);
         session.invalidate();
-        resp.sendRedirect("home.jsp");
-        System.out.println("\n" + "Logout detected.");}
+        req.setAttribute("modalMessage", "Have a nice day!.");
+        req.setAttribute("modalShow", "block");
+        req.setAttribute("pageToShowInTheMainBody", null);
+        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
+
 
     public static void clearSession (HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(false);

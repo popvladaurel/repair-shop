@@ -1,7 +1,3 @@
-
-document.getElementById("openModal").onclick = function() {
-    document.getElementById('modalDiv').style.display = "block";}
-
 document.getElementsByClassName("close")[0].onclick = function() {
     document.getElementById('modalDiv').style.display = "none";}
 

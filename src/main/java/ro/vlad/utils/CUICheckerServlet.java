@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/CUICheckerServlet")
+@WebServlet(urlPatterns = "/CUICheckerServlet", name = "CUICheckerServlet")
 public class CUICheckerServlet extends HttpServlet {
 
     @Override
@@ -22,14 +22,21 @@ public class CUICheckerServlet extends HttpServlet {
             req.setAttribute("newcompanyname", anafAPIcompanyJSON.get("denumire").toString());
             req.setAttribute("newcompanyaddress", anafAPIcompanyJSON.get("adresa").toString());
             req.setAttribute("anafmessage", anafAPIcompanyJSON.get("mesaj").toString());
-            req.setAttribute("radiata",(anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));}
+            req.setAttribute("radiata",(anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
+            req.setAttribute("modalMessage", "Data acquired!");
+            req.setAttribute("modalShow", "block");
+            req.setAttribute("pageToShowInTheMainBody", null);}
             //req.setAttribute("newcompanycui", OpenAPIcompanyJSON.get("denumire").toString());
             //req.setAttribute("newj", OpenAPIcompanyJSON.get("numar_reg_com").toString());
+            //req.setAttribute("newcompanyname", OpenAPIcompanyJSON.get("denumire").toString());
             //req.setAttribute("newcompanyaddress", OpenAPIcompanyJSON.get("adresa").toString() + ", " + OpenAPIcompanyJSON.get("judet"));
             //req.setAttribute("newcompanyphone", OpenAPIcompanyJSON.get("telefon").toString());
             //req.setAttribute("companystate", OpenAPIcompanyJSON.get("stare").toString());
         else {
-            req.setAttribute("anafmessage",(anafAPIcompanyJSON.get("mesaj")));}
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/addCustomer.jsp");
+            req.setAttribute("anafmessage",(anafAPIcompanyJSON.get("mesaj")));
+            req.setAttribute("modalMessage", "Cannot get Data. Check your Internet connection.");
+            req.setAttribute("modalShow", "block");
+            req.setAttribute("pageToShowInTheMainBody", null);}
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/addCompany.jsp");
         dispatcher.forward(req, resp);}
 }

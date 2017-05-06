@@ -14,7 +14,7 @@
         <class>ro.vlad.entities.contactDetails.ContactDetails</class>
         <class>ro.vlad.entities.person.Person</class>
         <class>ro.vlad.entities.userAccount.UserAccount</class>
-        <class>ro.vlad.entities.userAccount.DeletedUserAccount</class>
+        <class>ro.vlad.entities.userAccount.UserAccountDeleted</class>
 
         <properties>
             <property name="hibernate.format_sql" value="true" />

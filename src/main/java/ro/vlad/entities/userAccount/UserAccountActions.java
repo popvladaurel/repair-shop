@@ -12,57 +12,48 @@ public class UserAccountActions {
 
     public UserAccountActions (EntityManager entityManager){this.entityManager = entityManager;}
 
-    public void addAccount(String newUserAccountName, String newPassword, Person newPerson) {
+    void addAccount(String userAccountName, String password, Person person) {
         entityManager.getTransaction().begin();
-        DeletedUserAccount deletedUserAccount = entityManager.find(DeletedUserAccount.class, newUserAccountName);
-        if (deletedUserAccount != null) {
-            entityManager.remove(deletedUserAccount);}
         try {
-            String newHashedPassword = PasswordStorage.createHash(newPassword);
-            UserAccount newUserAccount = new UserAccount();
-            newUserAccount.setAccountId(newUserAccountName);
-            newUserAccount.setPasswordHash(newHashedPassword);
-            newUserAccount.setPerson(newPerson);
-            entityManager.persist(newUserAccount);
+            String newHashedPassword = PasswordStorage.createHash(password);
+            UserAccount userAccount = new UserAccount();
+            userAccount.setAccountId(userAccountName);
+            userAccount.setPasswordHash(newHashedPassword);
+            userAccount.setPerson(person);
+            entityManager.persist(userAccount);
             entityManager.flush();
             entityManager.getTransaction().commit();}
         catch (PasswordStorage.CannotPerformOperationException e) {e.printStackTrace();}}
 
-    public List<UserAccount> listAccounts() {
-        List<UserAccount> accountsList = entityManager.createQuery("SELECT userAccount FROM ro.vlad.entities.userAccount.UserAccount userAccount").getResultList();
-        return accountsList;}
+    List<UserAccount> listAccounts() {
+        return (List<UserAccount>) entityManager.createQuery("SELECT userAccount FROM ro.vlad.entities.userAccount.UserAccount userAccount").getResultList();}
 
-    public void changePassword(String accountName, String newPassword) throws PasswordStorage.CannotPerformOperationException {
+    void changePassword(String accountName, String password) {
         entityManager.getTransaction().begin();
-        UserAccount existingUserAccount = entityManager.find(UserAccount.class, accountName);
-        String newPasswordHash = null;
+        UserAccount userAccount = entityManager.find(UserAccount.class, accountName);
         try {
-            newPasswordHash = PasswordStorage.createHash(newPassword);}
+            userAccount.setPasswordHash(PasswordStorage.createHash(password));}
         catch (PasswordStorage.CannotPerformOperationException e) {e.printStackTrace();}
-        existingUserAccount.setPasswordHash(newPasswordHash);
-        entityManager.merge(existingUserAccount);
+        entityManager.merge(userAccount);
         entityManager.flush();
-        entityManager.getTransaction().commit();
-        System.out.println("Account modified!");}
+        entityManager.getTransaction().commit();}
 
-    public void deleteAccount(String accountName) {
+    void deleteAccount(String accountName) {
         entityManager.getTransaction().begin();
         UserAccount userAccount = getUserAccountByAccountName(accountName);
         if (userAccount != null) {
-            DeletedUserAccount deletedUserAccount = new DeletedUserAccount();
-            deletedUserAccount.setAccountName(accountName);
-            deletedUserAccount.setDateDeleted(new Timestamp(System.currentTimeMillis()));
-            entityManager.persist(deletedUserAccount);
+            UserAccountDeleted userAccountDeleted = new UserAccountDeleted();
+            userAccountDeleted.setAccountName(accountName);
+            userAccountDeleted.setDateDeleted(new Timestamp(System.currentTimeMillis()));
+            entityManager.persist(userAccountDeleted);
             entityManager.remove(userAccount);
             entityManager.flush();}
         entityManager.getTransaction().commit();}
 
     public UserAccount getUserAccountByAccountName(String accountName) {
-        UserAccount userAccount = entityManager.find(UserAccount.class, accountName);
-        return userAccount;}
+        return entityManager.find(UserAccount.class, accountName);}
 
     public boolean userAccountWasDeleted (String accountName) {
-        DeletedUserAccount deletedUserAccount = entityManager.find(DeletedUserAccount.class, accountName);
-        if (deletedUserAccount != null) {return true;}
-        else {return false;}}
+        UserAccountDeleted userAccountDeleted = entityManager.find(UserAccountDeleted.class, accountName);
+        return userAccountDeleted != null;}
 }

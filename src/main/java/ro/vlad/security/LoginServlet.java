@@ -13,7 +13,7 @@ import ro.vlad.entities.userAccount.UserAccountActions;
 
 import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
 
-@WebServlet(urlPatterns = "/loginServlet")
+@WebServlet(urlPatterns = "/loginServlet", name = "loginServlet")
 public class LoginServlet extends HttpServlet {
     private EntityManager entityManager;
     private UserAccountActions userAccountActions;
@@ -27,26 +27,33 @@ public class LoginServlet extends HttpServlet {
         EntityManagerFactory entityManagerFactory = (EntityManagerFactory) getServletContext().getAttribute(PERSISTENCE_FACTORY);
         entityManager = entityManagerFactory.createEntityManager();
         userAccountActions = new UserAccountActions(entityManager);
-        String loginUserName = req.getParameter("username");
-        String loginPassword = req.getParameter("password");
+        String loginUserName = req.getParameter("loginUserName");
+        String loginPassword = req.getParameter("loginPassword");
         if (userAccountActions.getUserAccountByAccountName(loginUserName) == null) {
-            System.out.println("This account does not exist");}
+            req.setAttribute("modalMessage", "This account does not exist.");
+            req.setAttribute("modalShow", "block");
+            req.setAttribute("pageToShowInTheMainBody", null);}
             else if (userAccountActions.userAccountWasDeleted(loginUserName)) {
-                System.out.println("This account was deleted.");}
+                req.setAttribute("modalMessage", "This account was deleted.");
+                req.setAttribute("modalShow", "block");
+                req.setAttribute("pageToShowInTheMainBody", null);}
                 else {
                     String query = "FROM ro.vlad.entities.userAccount.UserAccount storedUserAccount " +
                                     "WHERE storedUserAccount.accountId=" + "\'" +  loginUserName + "\'";
                     UserAccount storedUserAccount = (UserAccount) entityManager.createQuery(query).getSingleResult();
                     try {
                         if (!PasswordStorage.verifyPassword(loginPassword, storedUserAccount.getPasswordHash())) {
-                            System.out.println("Wrong password. Try again.");}
+                            req.setAttribute("modalMessage", "Wrong password. Try again.");
+                            req.setAttribute("modalShow", "block");
+                            req.setAttribute("pageToShowInTheMainBody", null);}
                             else {
                                 req.getSession().setAttribute("authenticatedUser", loginUserName);
                                 try {
-                                    req.setAttribute("username", storedUserAccount.getPerson().getName());}
+                                    req.setAttribute("username", storedUserAccount.getPerson().getName());
+                                    req.setAttribute("pageToShowInTheMainBody", null);}
                                 catch ( NullPointerException e) {req.setAttribute("username", "User");}}}
                     catch (PasswordStorage.CannotPerformOperationException e) {e.printStackTrace();}
                     catch (PasswordStorage.InvalidHashException e) {e.printStackTrace();}}
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home.jsp");
-        requestDispatcher.include(req, resp);}
+        req.setAttribute("pagetoshowinthemainbody", null);
+        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
 }

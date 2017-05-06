@@ -8,12 +8,18 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "deleteduseraccounts")
-public class DeletedUserAccount {
+public class UserAccountDeleted {
     @Id @Column(name = "accountname") private String accountName;
     @Column(name = "datedeleted") private Timestamp dateDeleted;
 
-    public void setAccountName(String accountName) {this.accountName = accountName;}
-    public void setDateDeleted(Timestamp dateDeleted) {this.dateDeleted = dateDeleted;}
+    public UserAccountDeleted() {}
+
+    public UserAccountDeleted(String accountName, Timestamp dateDeleted) {
+        this.accountName = accountName;
+        this.dateDeleted = dateDeleted;}
+
+    void setAccountName(String accountName) {this.accountName = accountName;}
+    void setDateDeleted(Timestamp dateDeleted) {this.dateDeleted = dateDeleted;}
 
     public String getAccountName() {return accountName;}
     public Timestamp getDateDeleted() {return dateDeleted;}

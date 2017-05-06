@@ -1,5 +1,17 @@
-function openNav(sidenavNumberToOpen, sideNavNumberToClose) {
-    closeNav(sideNavNumberToClose);
+function checkMobile() {
+    if(navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)){
+        closeNav(1);}
+    else {
+        openNav(1, 2, 3, 4);}}
+
+function openNav(sidenavNumberToOpen, sidenavNumberToClose1, sidenavNumberToClose2, sidenavNumberToClose3) {
+    closeNav(sidenavNumberToClose1); closeNav(sidenavNumberToClose2); closeNav(sidenavNumberToClose3);
     document.getElementById("sidenav" + sidenavNumberToOpen).style.width = "250px";
     var mq = window.matchMedia('all and (max-width: 736px)');
     if (mq.matches) {

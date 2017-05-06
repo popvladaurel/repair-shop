@@ -46,14 +46,6 @@
     background-color: rgb(92, 184, 92);
     color: white;}
 
-.modal-body {
-    padding: 2px 16px;}
-
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;}
-
 @-webkit-keyframes slideIn {
     from {bottom: -300px; opacity: 0}
     to {bottom: 0; opacity: 1}}

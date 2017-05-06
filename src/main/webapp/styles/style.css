@@ -4,7 +4,7 @@ html {
 
 body {
     background: rgba(37,40,42,0.9) no-repeat fixed center;
-    transition: background-color .5s;}
+    transition: 0.5s;}
 
 h1 {
   color: rgb(255, 255, 204);

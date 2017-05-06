@@ -13,6 +13,14 @@ public class Person {
     @OneToOne (cascade = CascadeType.ALL) private Address address;
     @OneToOne (cascade = CascadeType.ALL) private ContactDetails contactDetails;
 
+    public Person() {}
+
+    public Person(String CNP, String name, Address address, ContactDetails contactDetails) {
+        this.CNP = CNP;
+        this.name = name;
+        this.address = address;
+        this.contactDetails = contactDetails;}
+
     public void setCNP(String CNP) {this.CNP = CNP;}
     public void setName(String name) {this.name = name;}
     public void setAddress(Address address) {this.address = address;}
