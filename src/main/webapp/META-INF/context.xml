@@ -4,6 +4,5 @@
               type="javax.sql.DataSource"
               driverClassName="org.postgresql.Driver"
               url="jdbc:postgresql://localhost:5432/RepairShop"
-              username="postgres"
-              password="postgres" />
+              username="postgres" password="postgres"/>
 </Context>

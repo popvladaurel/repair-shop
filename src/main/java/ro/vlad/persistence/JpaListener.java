@@ -10,23 +10,14 @@ import org.slf4j.LoggerFactory;
 
 @WebListener
 public class JpaListener implements ServletContextListener {
-
     public static final String PERSISTENCE_FACTORY = "PERSISTENCE_FACTORY";
+    private static final Logger LOGGER = LoggerFactory.getLogger("RepairShop");
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("contacts");
-
-    public void contextInitialized(ServletContextEvent sce) {
-        // make the factory lazy init at startup so that the first call doesn't yield in an error
+    public void contextInitialized(ServletContextEvent servletContextEvent) {
         EntityManagerFactory factory = PersistenceFactory.getInstance();
-        sce.getServletContext().setAttribute(PERSISTENCE_FACTORY, factory);
+        servletContextEvent.getServletContext().setAttribute(PERSISTENCE_FACTORY, factory);}
 
-        LOGGER.info("Init of persistence factory successful");
-    }
-
-    public void contextDestroyed(ServletContextEvent sce) {
-        EntityManagerFactory factory = (EntityManagerFactory) sce.getServletContext().getAttribute(PERSISTENCE_FACTORY);
-        factory.close();
-
-        LOGGER.info("Closing of the persistence factory successful");
-    }
+    public void contextDestroyed(ServletContextEvent servletContextEvent) {
+        EntityManagerFactory factory = (EntityManagerFactory) servletContextEvent.getServletContext().getAttribute(PERSISTENCE_FACTORY);
+        factory.close();}
 }

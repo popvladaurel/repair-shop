@@ -23,20 +23,21 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="86a3e19c-1229-4134-8286-90b7f1102ebd">
-        <schema name="public" object-types="column, constraint, function, index, sequence, table, dataset trigger, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="86a3e19c-1229-4134-8286-90b7f1102ebd">
       <console name="Connection" type="STANDARD"><![CDATA[select * from userdata]]></console>
+      <console name="DerbyEE" type="STANDARD" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-list connection-id="86a3e19c-1229-4134-8286-90b7f1102ebd" dataset="public.userdata" active-filter-id="" />
-    <filter-list connection-id="86a3e19c-1229-4134-8286-90b7f1102ebd" dataset="public.useraccounts" active-filter-id="" />
+    <filter-list connection-id="86a3e19c-1229-4134-8286-90b7f1102ebd" dataset="public.useraccounts" active-filter-id="178486a2-43e1-423e-b8db-ff9f5bbb1a6e">
+      <filter id="178486a2-43e1-423e-b8db-ff9f5bbb1a6e" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="accountname" operator="is not null" value="" active="true" />
+      </filter>
+    </filter-list>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -264,11 +265,23 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JPA QL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="TML" enabled="true" />
+          <content-type name="GSP" enabled="true" />
+          <content-type name="ASP" enabled="true" />
+          <content-type name="VTL" enabled="true" />
+          <content-type name="AIDL" enabled="true" />
           <content-type name="YAML" enabled="true" />
+          <content-type name="Flex" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>
       </qualified-text-editor>

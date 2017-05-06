@@ -2,6 +2,7 @@ package ro.vlad.utils;
 
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -11,26 +12,30 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 public class CUICheckerOpenAPI {
-    public static String checkCUI(String CUI) {
+    public static JSONObject checkCUI(String CUI) {
         try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
             HttpGet request = new HttpGet("https://api.openapi.ro/api/companies/" + CUI);
-            request.addHeader("x-api-key", "JdJd51oEJntBmx7Tttp8mByA56gRn3npV2aPXvxgRr1cjvBViw");
+            request.addHeader("x-api-key", "TjfuGWLsuH7is4QiT31o9SrywytsPnNvsjNUVz1WEsfvW1mVgw");
             HttpResponse response = httpClient.execute(request);
             BufferedReader output = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
             JSONObject companyJSON = new JSONObject(output.readLine());
-            return "\n" + companyJSON.get("denumire").toString()
-                    + "\n\t" + companyJSON.get("cif")
-                    + "\n\t" + companyJSON.get("numar_reg_com")
-                    + "\n\t" + companyJSON.get("adresa")
-                    + ", " + companyJSON.get("judet")
-                    + "\n\t" + companyJSON.get("stare");
-        } catch (JSONException e) {
-            return "\n" + "CUI invalid."
-                    + "\n\t" + CUI;
-        } catch (IOException e) {
-            return "\n No Internet connection or OpenAPI subscription expired.";
-        }
-    }
+            return companyJSON;}
+        catch (JSONException e) {
+            System.out.println("No Internet connection or OpenAPI subscription expired.");
+            return null;}
+        catch (NullPointerException e) {
+            System.out.println("NullPointerException CUI invalid. " + CUI);
+            return null;}
+        catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;}
+        catch (ClientProtocolException e) {
+            e.printStackTrace();
+            return null;}
+        catch (IOException e) {
+            e.printStackTrace();
+            return null;}}
 }
