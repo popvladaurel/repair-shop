@@ -78,7 +78,7 @@
             <img src="images/company_128.svg">
             <p style="color:white;">Company</p>
             <form method="POST" action="/companyManagementServlet">
-                <input type="hidden" name="action" value="addCompany">
+                <input type="hidden" name="action" value="addCompany1">
                 <button class="button" type="submit">New Company</button>
             </form>
             <form method="POST" action="/companyManagementServlet">
@@ -100,7 +100,6 @@
             </form>
         </div><!--Settings navigation bar-->
         <div id="main">
-            <br><br><br>
             <div id="preferences" style="display:inline; white-space:nowrap; position:absolute; top:0px; right:0px; margin-right:10px; transition:0.5s"><!--Category buttons-->
                 <input style="margin-top:10px; margin-bottom:10px;" type="image" src="images/user_48.svg" alt="User Actions" onclick="openNav(1, 2, 3, 4)" >
                 <br class="phoneContent" style="display: ${showElement}">

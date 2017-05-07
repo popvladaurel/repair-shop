@@ -34,7 +34,7 @@
                     <input class="inputbox inputspecial" type="text" placeholder="ONRC" value="${newJ}" name="newJ">
                     <button class="button" style="margin-left:2px" type="submit">Verify Company</button>
                 </form>
-                <form action="/companyManagementServlet" method="POST">
+                <form action=${pathToServlet} method="POST">
                     <input type="hidden" name="action" value="addCompany">
                     <input type="hidden" name="newCompanyCUI" value="${newCompanyCUI}">
                     <input type="hidden" name="newJ" value="${newJ}">

@@ -13,8 +13,8 @@ public class UserAccountActions {
     public UserAccountActions (EntityManager entityManager){this.entityManager = entityManager;}
 
     void addAccount(String userAccountName, String password, Person person) {
-        entityManager.getTransaction().begin();
         try {
+            entityManager.getTransaction().begin();
             String newHashedPassword = PasswordStorage.createHash(password);
             UserAccount userAccount = new UserAccount();
             userAccount.setAccountId(userAccountName);

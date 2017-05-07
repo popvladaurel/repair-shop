@@ -32,10 +32,10 @@ public class CUICheckerAnafAPI {
                 return companyJSON;}
             else {
                 companyJSON.put("valid", false);
-                companyJSON.put("mesaj", response.getLastHeader("Location").getValue());
+                companyJSON.put("mesaj", "ANAF says: " + response.getStatusLine().getReasonPhrase() + " -> " + response.getStatusLine().getStatusCode());
                 return companyJSON;}}
         catch (IOException e) {
             companyJSON.put("valid", false);
-            companyJSON.put("mesaj", "Nu am putut prelua datele");
+            companyJSON.put("mesaj", "Nu am putut prelua datele de la ANAF.");
             return companyJSON;}}
 }

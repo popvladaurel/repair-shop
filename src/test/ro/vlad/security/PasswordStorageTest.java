@@ -80,6 +80,12 @@ public class PasswordStorageTest {
             System.exit(1);}}
 
     @Test
+    public void test_hash_generation() {
+        try {
+            System.out.println(PasswordStorage.createHash("admin"));}
+        catch (PasswordStorage.CannotPerformOperationException e) {e.printStackTrace();}}
+
+    @Test
     public void test_hash_for_same_string() throws PasswordStorage.CannotPerformOperationException, PasswordStorage.InvalidHashException {
         if (PasswordStorage.verifyPassword("1234", "sha1:64000:18:f2eBH+nz+UxhlClfde6KS5XKH5m8pc9a:6E2B/1bq3SWfaFXt6rDKk501")) {
             System.out.println("OK");}

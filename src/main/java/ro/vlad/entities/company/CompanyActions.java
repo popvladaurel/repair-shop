@@ -8,9 +8,9 @@ class CompanyActions {
 
     CompanyActions(EntityManager entityManager){this.entityManager = entityManager;}
 
-    void addCompany(Company newCompany) {
+    void addCompany(Company company) {
         entityManager.getTransaction().begin();
-        entityManager.persist(newCompany);
+        entityManager.persist(company);
         entityManager.flush();
         entityManager.getTransaction().commit();}
 

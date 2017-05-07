@@ -2,6 +2,7 @@ package ro.vlad.utils;
 
 
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -15,27 +16,28 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 public class CUICheckerOpenAPI {
+    public static String key;
+
+    public void setKey(String key) {this.key = key;}
+
     public static JSONObject checkCUI(String CUI) {
+        JSONObject companyJSON = new JSONObject();
         try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
             HttpGet request = new HttpGet("https://api.openapi.ro/api/companies/" + CUI);
-            request.addHeader("x-api-key", "TjfuGWLsuH7is4QiT31o9SrywytsPnNvsjNUVz1WEsfvW1mVgw");
+            request.addHeader("x-api-key", key);
             HttpResponse response = httpClient.execute(request);
-            BufferedReader output = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-            JSONObject companyJSON = new JSONObject(output.readLine());
-            System.out.println(companyJSON.toString());
-            return companyJSON;}
-        catch (JSONException e) {
-            System.out.println("No Internet connection or OpenAPI subscription expired.");
-            return null;}
-        catch (NullPointerException e) {
-            return null;}
-        catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;}
-        catch (ClientProtocolException e) {
-            e.printStackTrace();
-            return null;}
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                InputStreamReader inputStreamReader = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+                BufferedReader output = new BufferedReader(inputStreamReader);
+                companyJSON = new JSONObject(output.readLine());
+                companyJSON.put("valid", true);
+                return companyJSON;}
+            else {
+                companyJSON.put("valid", false);
+                companyJSON.put("mesaj", "OpenAPI says: " + response.getStatusLine().getReasonPhrase() + " -> " + response.getStatusLine().getStatusCode());
+                return companyJSON;}}
         catch (IOException e) {
-            e.printStackTrace();
-            return null;}}
+            companyJSON.put("valid", false);
+            companyJSON.put("mesaj", "Nu am putut prelua datele de la OpenAPI.");
+            return companyJSON;}}
 }

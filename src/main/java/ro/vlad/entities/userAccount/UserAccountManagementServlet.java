@@ -77,13 +77,12 @@ public class UserAccountManagementServlet extends HttpServlet {
                 break;
             case "deleteAccount":
                 userName = (String) req.getSession().getAttribute("authenticatedUser");
-                System.out.println(userName + "will be deleted now.");
+                System.out.println(userName + " will be deleted now.");
                 userAccountActions.deleteAccount(userName);
-                LogoutServlet.clearSession(req, resp);
                 req.setAttribute("modalMessage", "Account deleted and invalidated.");
                 req.setAttribute("modalShow", "block");
                 req.setAttribute("pageToShowInTheMainBody", null);
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                LogoutServlet.clearSession(req, resp);
                 break;
             default:
                 List<UserAccount> userAccountsList = userAccountActions.listAccounts();

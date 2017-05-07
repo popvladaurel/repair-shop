@@ -15,28 +15,30 @@ public class CUICheckerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //JSONObject OpenAPIcompanyJSON = CUICheckerOpenAPI.checkCUI(req.getParameter("companyCUI"));
-        JSONObject anafAPIcompanyJSON = CUICheckerAnafAPI.checkCUI(req.getParameter("newcompanycui"));
-        if ((Boolean) anafAPIcompanyJSON.get("valid")) {
-            req.setAttribute("newcompanycui", anafAPIcompanyJSON.get("cui").toString());
-            req.setAttribute("newcompanyname", anafAPIcompanyJSON.get("denumire").toString());
-            req.setAttribute("newcompanyaddress", anafAPIcompanyJSON.get("adresa").toString());
-            req.setAttribute("anafmessage", anafAPIcompanyJSON.get("mesaj").toString());
-            req.setAttribute("radiata",(anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
-            req.setAttribute("modalMessage", "Data acquired!");
-            req.setAttribute("modalShow", "block");
-            req.setAttribute("pageToShowInTheMainBody", null);}
-            //req.setAttribute("newcompanycui", OpenAPIcompanyJSON.get("denumire").toString());
-            //req.setAttribute("newj", OpenAPIcompanyJSON.get("numar_reg_com").toString());
-            //req.setAttribute("newcompanyname", OpenAPIcompanyJSON.get("denumire").toString());
-            //req.setAttribute("newcompanyaddress", OpenAPIcompanyJSON.get("adresa").toString() + ", " + OpenAPIcompanyJSON.get("judet"));
-            //req.setAttribute("newcompanyphone", OpenAPIcompanyJSON.get("telefon").toString());
-            //req.setAttribute("companystate", OpenAPIcompanyJSON.get("stare").toString());
-        else {
-            req.setAttribute("anafmessage",(anafAPIcompanyJSON.get("mesaj")));
-            req.setAttribute("modalMessage", "Cannot get Data. Check your Internet connection.");
-            req.setAttribute("modalShow", "block");
-            req.setAttribute("pageToShowInTheMainBody", null);}
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/addCompany.jsp");
+        JSONObject openAPIcompanyJSON = CUICheckerOpenAPI.checkCUI(req.getParameter("companyCUI"));
+        JSONObject anafAPIcompanyJSON = CUICheckerAnafAPI.checkCUI(req.getParameter("newCompanyCUI"));
+        if ((Boolean) openAPIcompanyJSON.get("valid")) {
+            req.setAttribute("newCompanyCUI", openAPIcompanyJSON.get("cif").toString());
+            req.setAttribute("newJ", openAPIcompanyJSON.get("numar_reg_com").toString());
+            req.setAttribute("newCompanyName", openAPIcompanyJSON.get("denumire").toString());
+            req.setAttribute("newCompanyAddress", openAPIcompanyJSON.get("adresa").toString() + ", " + openAPIcompanyJSON.get("judet"));
+            req.setAttribute("newCompanyPhone", openAPIcompanyJSON.get("telefon").toString());
+            if ((Boolean) anafAPIcompanyJSON.get("valid")) {
+                req.setAttribute("radiata",(anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
+                req.setAttribute("modalMessage", "Data acquired from ANAF and OpenAPI!");}
+            else {
+                req.setAttribute("modalMessage", "Data acquired from OpenAPI!");}}
+        else if ((Boolean) anafAPIcompanyJSON.get("valid")){
+                req.setAttribute("newCompanyCUI", anafAPIcompanyJSON.get("cui").toString());
+                req.setAttribute("newCompanyName", anafAPIcompanyJSON.get("denumire").toString());
+                req.setAttribute("newCompanyAddress", anafAPIcompanyJSON.get("adresa").toString());
+                req.setAttribute("modalMessage", "Data acquired from ANAF!");}
+            else {
+                req.setAttribute("modalMessage", "No API available");}
+        req.setAttribute("newCompanyState", openAPIcompanyJSON.get("mesaj").toString());
+        req.setAttribute("newAnafMessage", anafAPIcompanyJSON.get("mesaj").toString());
+        req.setAttribute("modalShow", "block");
+        req.setAttribute("pageToShowInTheMainBody", "/jsp/company.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
         dispatcher.forward(req, resp);}
 }

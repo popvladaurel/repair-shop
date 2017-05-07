@@ -17,7 +17,7 @@
                     <h4>Account details:</h4>
                     <input class="inputbox" type="text" placeholder="Username (required)" name="newAccountName" value="${newAccountName}" autofocus required ${disabled}>
                     <input class="inputbox inputspecial" type="number" placeholder="CNP (required)" name="newCNP"  value="${newCNP}"required ${disabled}>
-                    <input class="inputbox" type="password " placeholder="Password (required)" name="newPassword" value="${newPassword}" required ${disabled}>
+                    <input class="inputbox" type="password" placeholder="Password (required)" name="newPassword" value="${newPassword}" required ${disabled}>
                 </div>
                 <h4>Personal details:</h4>
                 <input class="inputbox" type="text" placeholder="Name (required)" name="newName" value="${newName}" required>
