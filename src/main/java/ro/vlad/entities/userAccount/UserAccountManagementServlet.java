@@ -3,13 +3,10 @@ package ro.vlad.entities.userAccount;
 import ro.vlad.entities.address.Address;
 import ro.vlad.entities.contactDetails.ContactDetails;
 import ro.vlad.entities.person.Person;
-import ro.vlad.security.LogoutServlet;
-import ro.vlad.security.PasswordStorage;
-import sun.security.util.DisabledAlgorithmConstraints;
+import ro.vlad.utils.ModalMessage;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +16,10 @@ import java.io.IOException;
 import java.util.List;
 
 import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
+import static ro.vlad.utils.ModalMessage.Color.*;
+import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
-@WebServlet(urlPatterns = "/userAccountManagementServlet", name = "userAccountManagementServlet")
+@WebServlet(urlPatterns = "/userAccountManagementServlet", name = "Manage User Accounts")
 public class UserAccountManagementServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
@@ -38,54 +37,61 @@ public class UserAccountManagementServlet extends HttpServlet {
         String action = req.getParameter("action");
         action = (action != null) ? action : "list";
         switch (action) {
-            case "addAccount1":
-                req.setAttribute("pathToServlet", "/userAccountManagementServlet?action=addAccount2");
-                req.setAttribute("show", "block");
-                req.setAttribute("disabled", "");
-                req.setAttribute("confirmButton", "Add User");
-                req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount.jsp");
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
-                break;
-            case "addAccount2":
+            case "addAccount":
                 ContactDetails contactDetails = new ContactDetails(req.getParameter("newPhoneNumber"), req.getParameter("newEmail"));
                 Address address = new Address(req.getParameter("newAddress"));
                 Person person = new Person(req.getParameter("newCNP"), req.getParameter("newName"), address, contactDetails);
                 UserAccountDeleted userAccountDeleted = entityManager.find(UserAccountDeleted.class, req.getParameter("newAccountName"));
                 if (userAccountDeleted != null) {
-                    req.setAttribute("modalMessage", "This user was invalidated, and cannot be created again.");
-                    req.setAttribute("modalShow", "block");
-                    req.setAttribute("pageToShowInTheMainBody", null);
+                    setReqModalMessage(req, new ModalMessage(RED, "This user was invalidated, and cannot be recreated.", null));
+//TODO implement option to restore account
                     getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
                 else {
                     userAccountActions.addAccount(req.getParameter("newAccountName"), req.getParameter("newPassword"), person);
-                    req.setAttribute("modalMessage", "Account added successfully!");
-                    req.setAttribute("modalShow", "block");
-                    req.setAttribute("pageToShowInTheMainBody", null);
+                    setReqModalMessage(req, new ModalMessage(GREEN, "Account added successfully!", null));
                     getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
                 break;
             case "changePassword":
                 String userName = (String) req.getSession().getAttribute("authenticatedUser");
                 String newPassword = req.getParameter("newPassword");
+//TODO implement confirmation method ("Are you sure you want to change your password?")
                 userAccountActions.changePassword(userName, newPassword);
-                req.setAttribute("modalMessage", "Password changed! Login using your new password.");
-                req.setAttribute("modalShow", "block");
-                req.setAttribute("pageToShowInTheMainBody", null);
-                req.setAttribute("authenticatedUser", null);
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 entityManagerFactory.getCache().evictAll();
-                LogoutServlet.clearSession(req, resp);
+                req.getSession().setAttribute("authenticatedUser", null);
+                setReqModalMessage(req, new ModalMessage(GREEN, "Password changed! Login using your new password.", null));
+                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;
             case "deleteAccount":
                 userName = (String) req.getSession().getAttribute("authenticatedUser");
-                System.out.println(userName + " will be deleted now.");
-                userAccountActions.deleteAccount(userName);
-                req.setAttribute("modalMessage", "Account deleted and invalidated.");
-                req.setAttribute("modalShow", "block");
-                req.setAttribute("pageToShowInTheMainBody", null);
-                LogoutServlet.clearSession(req, resp);
-                break;
+                switch (userName) {
+                    case "admin":
+                        setReqModalMessage(req, new ModalMessage(RED, "This account cannot be deleted!", null));
+                        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                        break;
+                    default:
+//TODO Implement confirmation method
+                        userAccountActions.deleteAccount(userName);
+                        req.getSession().setAttribute("authenticatedUser", null);
+                        setReqModalMessage(req, new ModalMessage(RED, "Account deleted and invalidated.", null));
+                        entityManagerFactory.getCache().evictAll();
+                        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                        break;}
             default:
                 List<UserAccount> userAccountsList = userAccountActions.listAccounts();
                 req.setAttribute("useraccounts", userAccountsList);
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}}
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        action = (action != null) ? action : "list";
+        switch (action) {
+            case "addAccount":
+                req.setAttribute("pathToServlet", "/userAccountManagementServlet?action=addAccount");
+                req.setAttribute("show", "block");
+                req.setAttribute("disabled", "");
+                req.setAttribute("confirmButton", "Add User");
+                req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount.jsp");
+                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                break;}}
 }

@@ -3,6 +3,7 @@ package ro.vlad.entities.company;
 import ro.vlad.entities.address.Address;
 import ro.vlad.entities.contactDetails.ContactDetails;
 import ro.vlad.entities.userAccount.UserAccountActions;
+import ro.vlad.utils.ModalMessage;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
+import static ro.vlad.utils.ModalMessage.Color.GREEN;
+import static ro.vlad.utils.ModalMessage.Color.RED;
+import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
 @WebServlet(urlPatterns = "/companyManagementServlet", name = "companyManagementServlet")
 public class CompanyManagementServlet extends HttpServlet {
@@ -32,20 +36,19 @@ public class CompanyManagementServlet extends HttpServlet {
         String action = req.getParameter("action");
         action = (action != null) ? action : "listCompanies";
         switch (action) {
+//TODO Move addCompany1 to doGET and fix getting company INFO
             case "addCompany1":
                 req.setAttribute("pathToServlet", "/companyManagementServlet?action=addCompany2");
                 req.setAttribute("show", "block");
                 req.setAttribute("disabled", "");
-                req.setAttribute("confirmButton", "Add User");
                 req.setAttribute("pageToShowInTheMainBody", "/jsp/company.jsp");
+//TODO Add a blue instructions message "Input Company cui and click on Verify Company"
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;
             case "addCompany2":
                 String newCompanyCUI = req.getParameter("newCompanyCUI");
-                if (companyActions.getCompanyByCUI(newCompanyCUI) == null) {
-                    req.setAttribute("modalMessage", "This company is already in the database!");
-                    //redirect to /companyManagementServlet?action=editCompany after a "Would you like to edit instead of add?"
-                    req.setAttribute("pageToShowInTheMainBody", "/home.jsp");}
+                if (companyActions.getCompanyByCUI(newCompanyCUI) != null) {
+                    setReqModalMessage(req, new ModalMessage(RED, "This company is already in the database!", "/jsp/company.jsp"));}
                 else {
                     String newJ = req.getParameter("newJ");
                     String newCompanyName = req.getParameter("newCompanyName");
@@ -56,13 +59,12 @@ public class CompanyManagementServlet extends HttpServlet {
                     newCompany.setContactDetails(newContactDetails);
                     newCompany.setAddress(newAddress);
                     companyActions.addCompany(newCompany);
-                    req.setAttribute("modalMessage", newCompanyName + "added!");}
-                req.setAttribute("modalShow", "block");
-                req.setAttribute("pageToShowInTheMainBody", null);
+                    setReqModalMessage(req, new ModalMessage(GREEN, newCompanyName + " added!", null));}
                 req.setAttribute("show", "block");
                 req.setAttribute("disabled", "");
                 req.setAttribute("confirmButton", "Add Company");
-                req.setAttribute("pageToShowInTheMainBody", null);
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
-                break;}}}
+                break;}}
+}
+//TODO Implement doGet and edit and list methods
 

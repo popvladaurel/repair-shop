@@ -4,9 +4,6 @@
 <html>
 	<head>
 		<title>Add Client</title>
-		<link rel="icon" type="image/png" href="../images/favicon.png"/>
-		<link rel="stylesheet" media="all" type="text/css" href="../styles/style.css">
-        <script rel="script" media="all" type="text/javascript" src="../scripts/sidenav.js"></script>
 		<meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
 	</head>
 	<body>
@@ -30,16 +27,13 @@
             <div>
                 <h4>Company Information (required):</h4>
                 <form action="/CUICheckerServlet" method="POST">
-                    <input class="inputbox" type="text" placeholder="CUI" value="${newCompanyCUI}" name="newCompanyCUI" autofocus required>
-                    <input class="inputbox inputspecial" type="text" placeholder="ONRC" value="${newJ}" name="newJ">
+                    <input  id="CuiToCheck" class="inputbox" type="text" placeholder="CUI" value="${newCompanyCUI}" name="newCompanyCUI" autofocus required>
+                    <input class="inputbox" type="text" placeholder="ONRC" value="${newJ}" name="newJ">
                     <button class="button" style="margin-left:2px" type="submit">Verify Company</button>
                 </form>
-                <form action=${pathToServlet} method="POST">
-                    <input type="hidden" name="action" value="addCompany">
-                    <input type="hidden" name="newCompanyCUI" value="${newCompanyCUI}">
-                    <input type="hidden" name="newJ" value="${newJ}">
+                <form action="${pathToServlet}" method="POST">
                     <input class="inputbox inputwide" type="text" placeholder="Name" value="${newCompanyName}" name="newCompanyName" required>
-                    <input class="inputbox inputwide" type="text" placeholder="Address (Street, Number, City)" value="${newCompanyAddress}" name="newCompanyAddress">
+                    <input class="inputbox inputwide" type="text" placeholder="Address" value="${newCompanyAddress}" name="newCompanyAddress" required>
                     <input class="inputbox inputwide" type="text" placeholder="IBAN" name="newCompanyIBAN">
                     <input class="inputbox inputhalf" type="text" placeholder="Phone" value="${newCompanyPhone}" name="newCompanyPhone">
                     <input class="inputbox inputspecial inputhalf" type="email" placeholder="email" name="newCompanyEmail">

@@ -1,5 +1,7 @@
 package ro.vlad.security;
 
+import ro.vlad.utils.ModalMessage;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static ro.vlad.utils.ModalMessage.Color.GREEN;
+import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
 @WebServlet(urlPatterns = "/logoutServlet", name = "logoutServlet")
 public class LogoutServlet extends HttpServlet {
@@ -16,15 +21,6 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         session.setAttribute("authenticatedUser", null);
         session.invalidate();
-        req.setAttribute("modalMessage", "Have a nice day!.");
-        req.setAttribute("modalShow", "block");
-        req.setAttribute("pageToShowInTheMainBody", null);
+        setReqModalMessage(req, new ModalMessage(GREEN, "Have a nice day!",  null));
         getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
-
-
-    public static void clearSession (HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        HttpSession session = req.getSession(false);
-        session.setAttribute("authenticatedUser", null);
-        session.invalidate();
-        resp.sendRedirect("home.jsp");}
 }

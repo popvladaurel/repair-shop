@@ -35,8 +35,8 @@
                 </form>
             </div><!--Login-->
             <div style="display: ${showElement}"><!--Available account actions-->
-                <form method="POST" action="/personManagementServlet">
-                    <input type="hidden" name="action" value="editAccountInformation1">
+                <form method="GET" action="/personManagementServlet">
+                    <input type="hidden" name="action" value="editAccountInformation">
                     <button class="button" type="submit">Edit Account</button>
                 </form>
                 <form method="POST" action="/userAccountManagementServlet">
@@ -49,8 +49,8 @@
                     <input type="hidden" name="action" value="deleteAccount">
                     <button class="button" type="submit">Delete Account</button>
                 </form>
-                <form method="POST" action="/userAccountManagementServlet" >
-                    <input type="hidden" name="action" value="addAccount1">
+                <form method="GET" action="/userAccountManagementServlet" >
+                    <input type="hidden" name="action" value="addAccount">
                     <button class="button" type="submit">New User</button>
                 </form>
                 <form action="/logoutServlet">
@@ -62,7 +62,7 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav(2)">&times;</a>
             <img src="images/customer_128.svg">
             <p style="color:white;">Customer</p>
-            <form method="POST" action="/personManagementServlet">
+            <form method="GET" action="/personManagementServlet">
                 <input type="hidden" name="action" value="addCustomer">
                 <button class="button" type="submit">New Customer</button>
             </form>
@@ -115,9 +115,9 @@
                     <c:import url="${pageToShowInTheMainBody}"/>
                 </c:when>
             </c:choose><%--Grab the page to show from servlet--%>
-            <div id="modalDiv" class="modal" style="display:${modalShow}"><!--SHow the messages-->
+            <div id="modalDiv" class="modal" style="display:${modalShow}"><!--Show the messages-->
                 <div id="modalContent" class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color:${modalColor}">
                         <span class="close">&times;</span>
                         <h2 id="modalText">${modalMessage}</h2>
                     </div>

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static ro.vlad.utils.ModalMessage.Color.GREEN;
+import static ro.vlad.utils.ModalMessage.Color.RED;
+import static ro.vlad.utils.ModalMessage.setReqModalMessage;
+
 @WebServlet(urlPatterns = "/CUICheckerServlet", name = "CUICheckerServlet")
 public class CUICheckerServlet extends HttpServlet {
 
@@ -24,21 +28,21 @@ public class CUICheckerServlet extends HttpServlet {
             req.setAttribute("newCompanyAddress", openAPIcompanyJSON.get("adresa").toString() + ", " + openAPIcompanyJSON.get("judet"));
             req.setAttribute("newCompanyPhone", openAPIcompanyJSON.get("telefon").toString());
             if ((Boolean) anafAPIcompanyJSON.get("valid")) {
-                req.setAttribute("radiata",(anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
-                req.setAttribute("modalMessage", "Data acquired from ANAF and OpenAPI!");}
+                req.setAttribute("radiata", (anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
+                setReqModalMessage(req, new ModalMessage(GREEN, "Data acquired from ANAF and OpenAPI!", "/jsp/company.jsp"));}
             else {
-                req.setAttribute("modalMessage", "Data acquired from OpenAPI!");}}
-        else if ((Boolean) anafAPIcompanyJSON.get("valid")){
-                req.setAttribute("newCompanyCUI", anafAPIcompanyJSON.get("cui").toString());
-                req.setAttribute("newCompanyName", anafAPIcompanyJSON.get("denumire").toString());
-                req.setAttribute("newCompanyAddress", anafAPIcompanyJSON.get("adresa").toString());
-                req.setAttribute("modalMessage", "Data acquired from ANAF!");}
-            else {
-                req.setAttribute("modalMessage", "No API available");}
+                setReqModalMessage(req, new ModalMessage(GREEN, "Data acquired from OpenAPI!", "/jsp/company.jsp"));}}
+        else if ((Boolean) anafAPIcompanyJSON.get("valid")) {
+            req.setAttribute("newCompanyCUI", anafAPIcompanyJSON.get("cui").toString());
+            req.setAttribute("newCompanyName", anafAPIcompanyJSON.get("denumire").toString());
+            req.setAttribute("newCompanyAddress", anafAPIcompanyJSON.get("adresa").toString());
+            setReqModalMessage(req, new ModalMessage(GREEN, "Data acquired from ANAF!", "/jsp/company.jsp"));}
+        else {
+            setReqModalMessage(req, new ModalMessage(RED, "No API available", "/jsp/company.jsp"));}
         req.setAttribute("newCompanyState", openAPIcompanyJSON.get("mesaj").toString());
         req.setAttribute("newAnafMessage", anafAPIcompanyJSON.get("mesaj").toString());
-        req.setAttribute("modalShow", "block");
-        req.setAttribute("pageToShowInTheMainBody", "/jsp/company.jsp");
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
         dispatcher.forward(req, resp);}
 }
+//TODO implement method to change expired OpenAPI key and link it to the corresponding button in the side bar Settings panel
+

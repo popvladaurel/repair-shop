@@ -64,8 +64,12 @@ h1 {
     transform: scale(1.0067);
     outline: none;}
 
+.bluebutton {
+    background-color: rgba(17, 94, 150, 0.80);
+    color: rgb(255, 255, 255);}
+
 .redbutton {
-    background-color: rgb(223, 75, 64);
+    background-color: rgba(215, 0, 0, 0.9);
     color: rgb(255, 255, 255);}
 
 .blackbutton {
@@ -73,17 +77,16 @@ h1 {
     color: rgb(255, 255, 255);}
 
 .greenbutton {
-    background-color: rgb(76, 175, 80);
+    background-color: rgba(34, 187, 69, 1);
     color: rgb(0, 0, 0);}
-
 
 @media screen and (max-width: 736px) {
     .phoneContent {display: none;}}
 
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 1002px) {
     .inputwide {width: 424px;}
     .inputhalf {width: 200px;}}
 
-@media screen and (max-width: 485px) {
+@media screen and (max-width: 767px) {
     .inputwide {width: 200px;}
     .inputhalf {width: 200px;}}
