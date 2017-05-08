@@ -12,13 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.util.List;
 
-import static ro.vlad.persistence.JpaListener.LOGGER;
-import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
-import static ro.vlad.utils.ModalMessage.Color.BLUE;
-import static ro.vlad.utils.ModalMessage.Color.GREEN;
-import static ro.vlad.utils.ModalMessage.Color.RED;
+import static ro.vlad.persistence.JpaListener.*;
+import static ro.vlad.utils.ModalMessage.Color.*;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
 @WebServlet(urlPatterns = "/companyManagementServlet", name = "Manage Companies")
@@ -45,6 +42,13 @@ public class CompanyManagementServlet extends HttpServlet {
                 req.setAttribute("disabled", "");
                 req.setAttribute("confirmButton", "Add Company");
                 setReqModalMessage(req, new ModalMessage(BLUE, "Input company CUI and click the Verify Company button.", "/jsp/company.jsp"));
+                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                break;
+            case "listCompanies":
+                LOGGER.info("Showing all companies...");
+                List<Company> companiesList = companyActions.listCompanies();
+                req.setAttribute("companiesList", companiesList);
+                req.setAttribute("pageToShowInTheMainBody", "/jsp/list.jsp");
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;}}
 
@@ -79,7 +83,6 @@ public class CompanyManagementServlet extends HttpServlet {
                         companyActions.addCompany(newCompany);
                         setReqModalMessage(req, new ModalMessage(GREEN, newCompanyName + " added!", null));
                         LOGGER.info("New company added!");}
-                resp.setCharacterEncoding("UTF-8");
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;}}
 }

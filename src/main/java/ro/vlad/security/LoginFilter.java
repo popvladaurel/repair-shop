@@ -25,11 +25,11 @@ public class LoginFilter implements Filter {
         boolean loggedIn = session != null && session.getAttribute("authenticatedUser") != null;
         boolean loginRequest = request.getRequestURI().equals("home.jsp");
         if (loggedIn || loginRequest) {
-            LOGGER.info(Charset.defaultCharset().toString());
+            LOGGER.info("Character encoding used: " + Charset.defaultCharset().toString());
             LOGGER.info("Authenticated! You may pass...");
             chain.doFilter(request, response);}
             else {
-            LOGGER.info("Not authenticated! You shall not pass! Redirecting to home.jsp...");
+            LOGGER.error("Not authenticated! You shall not pass! Redirecting to home.jsp...");
             response.sendRedirect("../home.jsp");}}
 
     @Override

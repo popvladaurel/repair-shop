@@ -20,6 +20,5 @@ public class CharsetFilter implements Filter {
         resp.setCharacterEncoding("UTF-8");
         chain.doFilter(req, resp);}
 
-    public void destroy() {
-    }
+    public void destroy() {}
 }

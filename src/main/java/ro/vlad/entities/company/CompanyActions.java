@@ -20,9 +20,13 @@ class CompanyActions {
 
     List<Company> listCompanies() {
         LOGGER.info("Fetching companies list...");
-        List<Company> companiesList = entityManager.createQuery("FROM ro.vlad.entities.company.Company company").getResultList();
-        LOGGER.info("Companies list retrieved successfully!");
-        return companiesList;}
+        List<Company> companiesList = entityManager.createQuery("SELECT company FROM ro.vlad.entities.company.Company company").getResultList();
+        if (companiesList != null) {
+            LOGGER.info("Companies list retrieved successfully!");
+            return companiesList;}
+        else {
+            LOGGER.info("No companies stored yet, nothing to show.");
+            return null;}}
 
     void deleteCompany(Company company) {
         LOGGER.info("Removing company...");

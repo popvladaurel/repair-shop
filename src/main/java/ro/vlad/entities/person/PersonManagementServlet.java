@@ -43,7 +43,7 @@ public class PersonManagementServlet extends HttpServlet {
         switch (action) {
             case "addCustomer":
                 req.setAttribute("pathToServlet", "/personManagementServlet?action=addCustomer");
-                setReqModalMessage(req, new ModalMessage(BLUE, "Input all the details and press the \"Add Customer\" button.", "/jsp/addPerson.jsp"));
+                setReqModalMessage(req, new ModalMessage(BLUE, "Input all the details and press the \"Add Customer\" button.", "/jsp/person.jsp"));
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;
 //TODO Move editing account information to userAccountManagementServlet and replace it with personal information editing

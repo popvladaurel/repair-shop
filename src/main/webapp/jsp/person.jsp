@@ -11,6 +11,7 @@
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     </head>
 	<body>
+        <br><br>
         <div id="frame1" style="display:block; transition:0.5s">
             <form class="standardform" action="${pathToServlet}" method="POST">
                 <div class="phoneContent">

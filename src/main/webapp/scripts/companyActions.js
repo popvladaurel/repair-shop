@@ -1,13 +1,3 @@
-var fixedstring;
-
-try{
-    // If the string is UTF-8, this will work and not throw an error.
-    fixedstring=decodeURIComponent(escape(badstring));
-}catch(e){
-    // If it isn't, an error will be thrown, and we can asume that we have an ISO string.
-    fixedstring=badstring;
-}
-
 function addCompany(){
     //create form with method and action
     var form = document.createElement("form");
@@ -58,4 +48,11 @@ function addCompany(){
     //append the form to page
     document.body.appendChild(form);
     //submit form
+    form.submit();}
+
+function listCompanies() {
+    var form = document.createElement("form");
+    form.setAttribute("method", "POST");
+    form.setAttribute("action", "/companyManagementServlet?action=listCompanies");
+    document.body.appendChild(form);
     form.submit();}

@@ -73,7 +73,7 @@
                 <input type="hidden" name="action" value="listCustomers">
                 <input id="searchforcostumerinput" class="inputbox" style="display:none" type="text" placeholder="Customer name" name="customerToSearch"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
-                <button id="searchforcostumerbutton" class="button" onclick="listCustomers()">Search</button>
+                <button id="searchforcostumerbutton" class="button" onclick="searchCustomers()">Search</button>
             </form><!--END a search for customer/person-->
         </div><!--END customer actions navigation bar-->
         <div id="sidenav3" class="sidenav"><!--START company actions navigation bar-->
@@ -84,8 +84,12 @@
                 <input type="hidden" name="action" value="addCompany">
                 <button class="button" type="submit">New Company</button>
             </form><!--END add new company-->
+            <form method="GET" action="/companyManagementServlet"><!--START list companies-->
+                <input type="hidden" name="action" value="listCompanies">
+                <button class="button" type="submit">View Companies</button>
+            </form><!--END list companies-->
 <!--TODO implement javascript search for companies to show an input box for query-->
-            <form method="POST" action="/companyManagementServlet"><!--START search list for companies-->
+            <form method="GET" action="/companyManagementServlet"><!--START search list for companies-->
                 <input type="hidden" name="action" value="listCompanies">
                 <input id="searchforcompanyinput" class="inputbox" style="display:none" type="text" placeholder="Company name" name="companyToSearch"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
