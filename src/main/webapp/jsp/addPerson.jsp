@@ -8,7 +8,8 @@
 		<link rel="stylesheet" media="all" type="text/css" href="../styles/style.css">
         <script rel="script" media="all" type="text/javascript" src="../scripts/sidenav.js"></script>
 		<meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
-	</head>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    </head>
 	<body>
         <div id="frame1" style="display:block; transition:0.5s">
             <form class="standardform" action="${pathToServlet}" method="POST">
@@ -24,7 +25,7 @@
                     <input class="inputbox inputwide" type="text" placeholder="Address (Street, Number, City)" name="newAddress">
                     <br>
                     <button class="button" onclick="location.href='../home.jsp'">Back</button>
-                    <button class="button greenbutton" type="submit" onclick="location.href='../home.jsp'">Add Customer</button>
+                    <button class="button greenbutton" type="submit">Add Customer</button>
                     <button class="button redbutton" type="reset">Clear Form</button>
                 </div>
             </form>

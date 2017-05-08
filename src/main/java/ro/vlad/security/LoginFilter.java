@@ -1,6 +1,7 @@
 package ro.vlad.security;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -24,6 +25,7 @@ public class LoginFilter implements Filter {
         boolean loggedIn = session != null && session.getAttribute("authenticatedUser") != null;
         boolean loginRequest = request.getRequestURI().equals("home.jsp");
         if (loggedIn || loginRequest) {
+            LOGGER.info(Charset.defaultCharset().toString());
             LOGGER.info("Authenticated! You may pass...");
             chain.doFilter(request, response);}
             else {

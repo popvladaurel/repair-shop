@@ -65,5 +65,4 @@ public class CUICheckerServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
         dispatcher.forward(req, resp);}
 }
-//TODO implement method to change expired OpenAPI key and link it to the corresponding button in the side bar Settings panel
 

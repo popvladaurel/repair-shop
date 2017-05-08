@@ -1,5 +1,5 @@
 function changePassword(){
-    document.getElementById("newkeyinput").setAttribute("style", "display:block");
+    document.getElementById("newpasswordinput").setAttribute("style", "display:block");
     document.getElementById("newpasswordbutton").setAttribute("onclick", "hidePasswordField()");
     document.getElementById("newpasswordbutton").setAttribute("type", "submit");}
 

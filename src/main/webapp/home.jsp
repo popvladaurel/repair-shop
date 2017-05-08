@@ -11,8 +11,10 @@
         <script rel="script" media="all" type="text/javascript" src="scripts/sidenav.js"></script>
         <script rel="script" media="all" type="text/javascript" src="scripts/userAccountActions.js"></script>
         <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
-	</head>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    </head>
     <body onpageshow="checkMobile()">
+        <jsp:directive.page contentType="text/html; charset=UTF-8" />
         <c:choose><%--START hide page elements before login--%>
             <c:when test="${sessionScope.authenticatedUser != null}">
                 <c:set value="block" var="showElement"></c:set>
@@ -78,8 +80,8 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav(3)">&times;</a>
             <img src="images/company_128.svg">
             <p style="color:white;">Company</p>
-            <form method="POST" action="/companyManagementServlet"><!--START add new company-->
-                <input type="hidden" name="action" value="addCompany1">
+            <form method="GET" action="/companyManagementServlet"><!--START add new company-->
+                <input type="hidden" name="action" value="addCompany">
                 <button class="button" type="submit">New Company</button>
             </form><!--END add new company-->
 <!--TODO implement javascript search for companies to show an input box for query-->
