@@ -7,7 +7,6 @@
 		<meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
 	</head>
 	<body>
-        <br><br><br>
         <c:choose>
             <c:when test="${radiata == null || radiata == false}">
                 <c:set value="greenbutton" var="radiataError"></c:set>

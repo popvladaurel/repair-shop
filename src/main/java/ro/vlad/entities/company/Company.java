@@ -2,7 +2,6 @@ package ro.vlad.entities.company;
 
 import ro.vlad.entities.contactDetails.ContactDetails;
 import ro.vlad.entities.address.Address;
-import ro.vlad.entities.person.Person;
 
 import javax.persistence.*;
 

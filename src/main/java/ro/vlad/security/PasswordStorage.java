@@ -89,14 +89,10 @@ public class PasswordStorage {
             PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, bytes * 8);
             SecretKeyFactory skf = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM);
             return skf.generateSecret(spec).getEncoded();}
-        catch (NoSuchAlgorithmException ex) {
-            throw new CannotPerformOperationException("Hash algorithm not supported.", ex);}
-        catch (InvalidKeySpecException ex) {
-            throw new CannotPerformOperationException("Invalid key spec.", ex);}}
+        catch (NoSuchAlgorithmException ex) {throw new CannotPerformOperationException("Hash algorithm not supported.", ex);}
+        catch (InvalidKeySpecException ex) {throw new CannotPerformOperationException("Invalid key spec.", ex);}}
 
-    private static byte[] fromBase64(String hex) throws IllegalArgumentException {
-        return DatatypeConverter.parseBase64Binary(hex);}
+    private static byte[] fromBase64(String hex) throws IllegalArgumentException {return DatatypeConverter.parseBase64Binary(hex);}
 
-    private static String toBase64(byte[] array) {
-        return DatatypeConverter.printBase64Binary(array);}
+    private static String toBase64(byte[] array) {return DatatypeConverter.printBase64Binary(array);}
 }

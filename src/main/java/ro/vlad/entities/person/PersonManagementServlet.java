@@ -15,11 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static ro.vlad.persistence.JpaListener.LOGGER;
 import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
 import static ro.vlad.utils.ModalMessage.Color.*;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
-@WebServlet(urlPatterns = "/personManagementServlet", name = "personManagementServlet")
+@WebServlet(urlPatterns = "/personManagementServlet", name = "Manage Customers")
 public class PersonManagementServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
@@ -37,6 +38,7 @@ public class PersonManagementServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
+        LOGGER.info("GET command received: " + action);
         action = (action != null) ? action : "list";
         switch (action) {
             case "addCustomer":
@@ -68,6 +70,7 @@ public class PersonManagementServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
+        LOGGER.info("POST command received: " + action);
         action = (action != null) ? action : "list";
         switch (action) {
             case "addCustomer":

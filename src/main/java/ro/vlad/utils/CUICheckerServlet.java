@@ -14,7 +14,7 @@ import static ro.vlad.utils.ModalMessage.Color.GREEN;
 import static ro.vlad.utils.ModalMessage.Color.RED;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
-@WebServlet(urlPatterns = "/CUICheckerServlet", name = "CUICheckerServlet")
+@WebServlet(urlPatterns = "/CUICheckerServlet", name = "Could this be a scam??")
 public class CUICheckerServlet extends HttpServlet {
 
     @Override
@@ -36,9 +36,10 @@ public class CUICheckerServlet extends HttpServlet {
             req.setAttribute("newCompanyCUI", anafAPIcompanyJSON.get("cui").toString());
             req.setAttribute("newCompanyName", anafAPIcompanyJSON.get("denumire").toString());
             req.setAttribute("newCompanyAddress", anafAPIcompanyJSON.get("adresa").toString());
+            req.setAttribute("radiata", (anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
             setReqModalMessage(req, new ModalMessage(GREEN, "Data acquired from ANAF!", "/jsp/company.jsp"));}
         else {
-            setReqModalMessage(req, new ModalMessage(RED, "No API available", "/jsp/company.jsp"));}
+            setReqModalMessage(req, new ModalMessage(RED, "No API available. Start typing...", "/jsp/company.jsp"));}
         req.setAttribute("newCompanyState", openAPIcompanyJSON.get("mesaj").toString());
         req.setAttribute("newAnafMessage", anafAPIcompanyJSON.get("mesaj").toString());
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");

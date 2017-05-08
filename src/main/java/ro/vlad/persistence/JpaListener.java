@@ -11,13 +11,15 @@ import org.slf4j.LoggerFactory;
 @WebListener
 public class JpaListener implements ServletContextListener {
     public static final String PERSISTENCE_FACTORY = "PERSISTENCE_FACTORY";
-    private static final Logger LOGGER = LoggerFactory.getLogger("RepairShop");
+    public static final Logger LOGGER = LoggerFactory.getLogger("RepairShop");
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         EntityManagerFactory factory = PersistenceFactory.getInstance();
-        servletContextEvent.getServletContext().setAttribute(PERSISTENCE_FACTORY, factory);}
+        servletContextEvent.getServletContext().setAttribute(PERSISTENCE_FACTORY, factory);
+        LOGGER.info("Init of persistence factory successful");}
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         EntityManagerFactory factory = (EntityManagerFactory) servletContextEvent.getServletContext().getAttribute(PERSISTENCE_FACTORY);
-        factory.close();}
+        factory.close();
+        LOGGER.info("Closing of the persistence factory successful");}
 }

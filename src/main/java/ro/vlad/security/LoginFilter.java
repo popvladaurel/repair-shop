@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = "/jsp/*", filterName = "BestFilterEver")
+import static ro.vlad.persistence.JpaListener.LOGGER;
+
+@WebFilter(urlPatterns = "/jsp/*", filterName = "Gandalf In Moria")
 public class LoginFilter implements Filter {
 
     @Override
@@ -22,9 +24,11 @@ public class LoginFilter implements Filter {
         boolean loggedIn = session != null && session.getAttribute("authenticatedUser") != null;
         boolean loginRequest = request.getRequestURI().equals("home.jsp");
         if (loggedIn || loginRequest) {
+            LOGGER.info("Authenticated! You may pass...");
             chain.doFilter(request, response);}
             else {
-                response.sendRedirect("../home.jsp");}}
+            LOGGER.info("Not authenticated! You shall not pass! Redirecting to home.jsp...");
+            response.sendRedirect("../home.jsp");}}
 
     @Override
     public void destroy() {}

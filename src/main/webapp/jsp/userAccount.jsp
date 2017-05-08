@@ -7,8 +7,6 @@
         <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
     </head>
     <body>
-        <br>
-        <br>
         <div class="phoneContent">
             <img src="../images/user_add_128.svg">
         </div>
