@@ -37,8 +37,8 @@
                     <input class="inputbox inputhalf" type="text" placeholder="Phone" value="${newCompanyPhone}" name="newCompanyPhone">
                     <input class="inputbox inputspecial inputhalf" type="email" placeholder="email" name="newCompanyEmail">
                     <h4>Validation Messages:</h4>
-                    <input class="inputbox inputhalf" type="text" placeholder="State" value="${newCompanyState}" name="newCompanyState">
-                    <input class="inputbox inputhalf" type="text" placeholder="Message" value="${newAnafMessage}" name="newAnafMessage">
+                    <input class="inputbox inputhalf" type="text" placeholder="OpenAPI validation message" value="${newCompanyState}" name="newCompanyState">
+                    <input class="inputbox inputhalf" type="text" placeholder="ANAF validation message" value="${newAnafMessage}" name="newAnafMessage">
                     <input style="display:none" type="text" value="${radiata}" name="radiata">
                     <br>
                     <button type="button" class="button" onclick="location.href='../home.jsp'">Back</button>

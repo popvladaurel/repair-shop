@@ -94,13 +94,16 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav(4)">&times;</a>
             <img src="images/settings_128.svg">
             <p style="color:white;">Settings</p>
-            <form method="POST" action="/openAPIManagerServlet"><!--START change OpenAPI key-->
+            <form method="GET" action="/CUICheckerServlet"><!--START change OpenAPI key-->
                 <input type="hidden" name="action" value="changeKey">
-                <input id="newkey" class="inputbox" style="display:none" type="text" placeholder="Paste new OpenAPI key" name="newKey"
+                <input id="newkeyinput" class="inputbox" style="display:none" type="text" placeholder="Paste new OpenAPI key" name="openApiKey"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
-<!--TODO implemet change OpenAPI javascript to show new key input box-->
-                <button class="button" onclick="changeOpenAPIKey()">Change OpenAPI Key</button>
+                <button id="newkeybutton" class="button" onclick="changeOpenAPIKey()">Change OpenAPI Key</button>
             </form><!--END change OpenAPI key-->
+            <form method="GET" action="/CUICheckerServlet"><!--START show OpenAPI key-->
+                <input type="hidden" name="action" value="viewKey">
+                <button class="button" type="submit">View OpenAPI Key</button>
+            </form><!--END show OpenAPI key-->
         </div><!--END settings navigation bar-->
         <div id="main">
             <div id="preferences" style="display:inline; white-space:nowrap; position:absolute; top:0px; right:0px; margin-right:10px; transition:0.5s"><!--START category buttons-->

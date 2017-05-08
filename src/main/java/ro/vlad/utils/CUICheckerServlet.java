@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static ro.vlad.persistence.JpaListener.LOGGER;
+import static ro.vlad.utils.CUICheckerOpenAPI.getKey;
+import static ro.vlad.utils.CUICheckerOpenAPI.setKey;
+import static ro.vlad.utils.ModalMessage.Color.BLUE;
 import static ro.vlad.utils.ModalMessage.Color.GREEN;
 import static ro.vlad.utils.ModalMessage.Color.RED;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
@@ -19,7 +23,7 @@ public class CUICheckerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JSONObject openAPIcompanyJSON = CUICheckerOpenAPI.checkCUI(req.getParameter("companyCUI"));
+        JSONObject openAPIcompanyJSON = CUICheckerOpenAPI.checkCUI(req.getParameter("newCompanyCUI"));
         JSONObject anafAPIcompanyJSON = CUICheckerAnafAPI.checkCUI(req.getParameter("newCompanyCUI"));
         if ((Boolean) openAPIcompanyJSON.get("valid")) {
             req.setAttribute("newCompanyCUI", openAPIcompanyJSON.get("cif").toString());
@@ -42,6 +46,22 @@ public class CUICheckerServlet extends HttpServlet {
             setReqModalMessage(req, new ModalMessage(RED, "No API available. Start typing...", "/jsp/company.jsp"));}
         req.setAttribute("newCompanyState", openAPIcompanyJSON.get("mesaj").toString());
         req.setAttribute("newAnafMessage", anafAPIcompanyJSON.get("mesaj").toString());
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
+        dispatcher.forward(req, resp);}
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        LOGGER.info("GET command received: " + action);
+        switch (action) {
+            case "changeKey":
+                String newOpenAPIKey = req.getParameter("openApiKey");
+                LOGGER.info("Changing OpenAPI key...");
+                setKey(newOpenAPIKey);
+                setReqModalMessage(req, new ModalMessage(GREEN, "OpenAPI key changed. Try adding a company", "/jsp/company.jsp"));
+            case "viewKey":
+                LOGGER.info("Getting OpenAPI key...");
+                setReqModalMessage(req, new ModalMessage(BLUE, getKey(), null));}
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
         dispatcher.forward(req, resp);}
 }
