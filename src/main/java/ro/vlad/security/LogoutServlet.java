@@ -14,6 +14,10 @@ import static ro.vlad.persistence.JpaListener.LOGGER;
 import static ro.vlad.utils.ModalMessage.Color.GREEN;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
+/**
+ * Called when a user decides to close the session
+ * Nullifies the "authenticatedUser" parameter of the session and invalidates it
+ */
 @WebServlet(urlPatterns = "/logoutServlet", name = "May we meet again...")
 public class LogoutServlet extends HttpServlet {
 

@@ -13,6 +13,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Connects to the anaf.ro API and retrieves relevant information, depending on the input CUI
+ * Manipulates the received JSON into a more manageable entity, in certain cases adding or editing it's values
+ */
 public class CUICheckerAnafAPI {
     public static JSONObject checkCUI(String CUI) {
         JSONObject companyJSON = new JSONObject();

@@ -18,6 +18,11 @@ import static ro.vlad.persistence.JpaListener.*;
 import static ro.vlad.utils.ModalMessage.Color.*;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
+/**
+ * Controller for the Company entity, used for transmitting all relevant information between pages
+ * and basic actions from CompanyActions class.
+ * Depending on the contents of the request and method type, it decides witch page to display and how to display it
+ */
 @WebServlet(urlPatterns = "/companyManagementServlet", name = "Manage Companies")
 public class CompanyManagementServlet extends HttpServlet {
     private EntityManager entityManager;
@@ -58,6 +63,7 @@ public class CompanyManagementServlet extends HttpServlet {
         LOGGER.info("POST command received: " + action);
         action = (action != null) ? action : "listCompanies";
         switch (action) {
+//TODO Implement edit and search methods
             case "addCompany":
                 String newCompanyCUI = req.getParameter("newCompanyCUI");
                 if (newCompanyCUI == null || newCompanyCUI.equals("")) {
@@ -86,5 +92,4 @@ public class CompanyManagementServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;}}
 }
-//TODO Implement edit and list methods
 

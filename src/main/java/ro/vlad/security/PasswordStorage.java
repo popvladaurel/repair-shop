@@ -7,6 +7,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import javax.xml.bind.DatatypeConverter;
 
+/**
+ * Contains all the methods required to encrypt passwords and to check the input against the stored hashcodes
+ */
 public class PasswordStorage {
 
     @SuppressWarnings("serial")

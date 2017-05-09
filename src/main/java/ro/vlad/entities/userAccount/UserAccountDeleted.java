@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
+/**
+ * Entities of this type are persisted whenever a UserAccount is deleted
+ */
 @Entity
 @Table(name = "deleteduseraccounts")
 public class UserAccountDeleted {

@@ -20,6 +20,9 @@ import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
 import static ro.vlad.utils.ModalMessage.Color.*;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
+/**
+ * Controller for the Person entity
+ */
 @WebServlet(urlPatterns = "/personManagementServlet", name = "Manage Customers")
 public class PersonManagementServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;

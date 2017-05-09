@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * Basic UserAccount actions
+ */
 public class UserAccountActions {
     private EntityManager entityManager;
 

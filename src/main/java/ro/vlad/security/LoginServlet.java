@@ -17,6 +17,10 @@ import static ro.vlad.utils.ModalMessage.Color.GREEN;
 import static ro.vlad.utils.ModalMessage.Color.RED;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
+/**
+ * Processes the login request, compares it's parameters against the contents of the database and decides where to send the user
+ * Displays a relevant message, depending on the circumstances
+ */
 @WebServlet(urlPatterns = "/loginServlet", name = "What's the Word?!")
 public class LoginServlet extends HttpServlet {
     private EntityManager entityManager;

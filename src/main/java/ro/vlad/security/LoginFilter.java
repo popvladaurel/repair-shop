@@ -11,6 +11,10 @@ import javax.servlet.http.HttpSession;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
 
+/**
+ * Handles all the login requests and check the session for existence of the "authenticatedUser" attribute
+ * It defaults to the home page and invalidates the session if requirements are not met
+ */
 @WebFilter(urlPatterns = "/jsp/*", filterName = "Gandalf In Moria")
 public class LoginFilter implements Filter {
 
@@ -30,6 +34,7 @@ public class LoginFilter implements Filter {
             chain.doFilter(request, response);}
             else {
             LOGGER.error("Not authenticated! You shall not pass! Redirecting to home.jsp...");
+            session.invalidate();
             response.sendRedirect("../home.jsp");}}
 
     @Override

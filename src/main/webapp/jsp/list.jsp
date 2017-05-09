@@ -13,7 +13,7 @@
     <br><br>
         <div class="standardform" style="transition:0.5s">
             <div class="phoneContent">
-                <img src="../images/company_add_128.svg">
+                <img src="../images/company_128.svg">
             </div>
             <div>
                 <h4>Stored Companies:</h4>
@@ -30,6 +30,7 @@
                             <td><c:out value="${company.j}"/></td>
                             <td><c:out value="${company.name}"/></td>
                             <td><c:out value="${company.address.address}"/></td>
+<!--TODO add methods to edit or delete entries -->
                         </tr>
                     </c:forEach>
                 </table>

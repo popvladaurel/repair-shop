@@ -13,6 +13,10 @@ import java.io.InputStreamReader;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
 
+/**
+ * Same as CUICheckerAnafAPI, but this one uses OpenAPI to retireve data
+ * Also provides a method of changing the key required for valid interrogations
+ */
 public class CUICheckerOpenAPI {
     public static String key;
 

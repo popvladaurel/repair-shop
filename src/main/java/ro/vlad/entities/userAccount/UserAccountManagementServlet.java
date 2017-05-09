@@ -20,6 +20,9 @@ import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
 import static ro.vlad.utils.ModalMessage.Color.*;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
+/**
+ * Controller for the UserAccount class.
+ */
 @WebServlet(urlPatterns = "/userAccountManagementServlet", name = "Manage User Accounts")
 public class UserAccountManagementServlet extends HttpServlet {
     private EntityManagerFactory entityManagerFactory;

@@ -1,0 +1,13 @@
+ro.vlad.entities
+ro.vlad.entities.address
+ro.vlad.entities.company
+ro.vlad.entities.contactDetails
+ro.vlad.entities.devices.Desktop
+ro.vlad.entities.devices.Laptop
+ro.vlad.entities.devices.Mobile
+ro.vlad.entities.devices.Peripheral
+ro.vlad.entities.person
+ro.vlad.entities.userAccount
+ro.vlad.persistence
+ro.vlad.security
+ro.vlad.utils

@@ -14,7 +14,7 @@
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     </head>
     <body onpageshow="checkMobile()">
-        <jsp:directive.page contentType="text/html; charset=UTF-8" />
+        <jsp:directive.page contentType="text/html; charset=UTF-8"/>
         <c:choose><%--START hide page elements before login--%>
             <c:when test="${sessionScope.authenticatedUser != null}">
                 <c:set value="block" var="showElement"></c:set>
@@ -110,6 +110,7 @@
                 <input type="hidden" name="action" value="viewKey">
                 <button class="button" type="submit">View OpenAPI Key</button>
             </form><!--END show OpenAPI key-->
+<!--TODO add method to disable the modal messages, but keep confirmations-->
         </div><!--END settings navigation bar-->
         <div id="main">
             <div id="preferences" style="display:inline; white-space:nowrap; position:absolute; top:0px; right:0px; margin-right:10px; transition:0.5s"><!--START category buttons-->

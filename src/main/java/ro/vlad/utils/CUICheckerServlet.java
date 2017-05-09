@@ -18,6 +18,11 @@ import static ro.vlad.utils.ModalMessage.Color.GREEN;
 import static ro.vlad.utils.ModalMessage.Color.RED;
 import static ro.vlad.utils.ModalMessage.setReqModalMessage;
 
+/**
+ * The controller for CUICheckerAnafAPI and CUICheckerOpenAPI classes
+ * Analyses data received from those two classes and decides what to transmit to the page
+ * Triggers relevant messages for every possible situation
+ */
 @WebServlet(urlPatterns = "/CUICheckerServlet", name = "Could this be a scam??")
 public class CUICheckerServlet extends HttpServlet {
 

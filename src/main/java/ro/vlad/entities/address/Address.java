@@ -1,7 +1,7 @@
 package ro.vlad.entities.address;
 
 import javax.persistence.*;
-
+//TODO expand Address class to include separate fields for city, street, county and number
 @Entity
 @Table(name = "addresses")
 public class Address {
