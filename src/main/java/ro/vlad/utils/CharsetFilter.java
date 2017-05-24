@@ -1,4 +1,4 @@
-package ro.vlad.security;
+package ro.vlad.utils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -22,7 +22,7 @@ public class CharsetFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         if (req.getCharacterEncoding() == null) {
-            req.setCharacterEncoding(encoding);}
+            req.setCharacterEncoding("UTF-8");}
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
         LOGGER.info("Character encoding used: " + Charset.defaultCharset().toString());

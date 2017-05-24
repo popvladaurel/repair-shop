@@ -1,6 +1,6 @@
 package ro.vlad.security;
 
-import ro.vlad.utils.ModalMessage;
+import ro.vlad.utils.Modal;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
-import static ro.vlad.utils.ModalMessage.Color.GREEN;
-import static ro.vlad.utils.ModalMessage.setReqModalMessage;
+import static ro.vlad.utils.Modal.Color.GREEN;
+import static ro.vlad.utils.Modal.setMessage;
 
 /**
  * Called when a user decides to close the session
@@ -27,7 +27,7 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         session.setAttribute("authenticatedUser", null);
         session.invalidate();
-        setReqModalMessage(req, new ModalMessage(GREEN, "Have a nice day!",  null));
+        setMessage(req, new Modal(GREEN, "Have a nice day!",  null));
         LOGGER.info("Session invalidated!");
         getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
 }

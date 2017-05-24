@@ -18,10 +18,8 @@ import static ro.vlad.persistence.JpaListener.LOGGER;
 @WebFilter(urlPatterns = "/jsp/*", filterName = "Gandalf In Moria")
 public class LoginFilter implements Filter {
 
-    @Override
     public void init(FilterConfig filterConfig) throws ServletException {}
 
-    @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
@@ -29,14 +27,12 @@ public class LoginFilter implements Filter {
         boolean loggedIn = session != null && session.getAttribute("authenticatedUser") != null;
         boolean loginRequest = request.getRequestURI().equals("home.jsp");
         if (loggedIn || loginRequest) {
-            LOGGER.info("Character encoding used: " + Charset.defaultCharset().toString());
             LOGGER.info("Authenticated! You may pass...");
             chain.doFilter(request, response);}
             else {
             LOGGER.error("Not authenticated! You shall not pass! Redirecting to home.jsp...");
             session.invalidate();
-            response.sendRedirect("../home.jsp");}}
+            response.sendRedirect("../../home.jsp");}}
 
-    @Override
     public void destroy() {}
 }

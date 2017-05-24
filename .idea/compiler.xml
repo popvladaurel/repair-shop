@@ -9,8 +9,8 @@
         <module name="RepairShop" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="RepairShop" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="RepairShop" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

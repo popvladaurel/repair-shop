@@ -4,8 +4,8 @@
 <html>
 	<head>
 		<title>View Companies</title>
-		<link rel="icon" type="image/png" href="../images/favicon.png"/>
-		<link rel="stylesheet" media="all" type="text/css" href="../styles/style.css">
+		<link rel="icon" type="image/png" href="../../images/favicon.png"/>
+		<link rel="stylesheet" media="all" type="text/css" href="../../styles/style.css">
         <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     </head>
@@ -13,7 +13,7 @@
     <br><br>
         <div class="standardform" style="transition:0.5s">
             <div class="phoneContent">
-                <img src="../images/company_128.svg">
+                <img src="../../images/company_128.svg">
             </div>
             <div>
                 <h4>Stored Companies:</h4>

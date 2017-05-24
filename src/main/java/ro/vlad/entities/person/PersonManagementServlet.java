@@ -4,7 +4,7 @@ import ro.vlad.entities.address.Address;
 import ro.vlad.entities.contactDetails.ContactDetails;
 import ro.vlad.entities.userAccount.UserAccount;
 import ro.vlad.entities.userAccount.UserAccountActions;
-import ro.vlad.utils.ModalMessage;
+import ro.vlad.utils.Modal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,8 +17,8 @@ import java.io.IOException;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
 import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
-import static ro.vlad.utils.ModalMessage.Color.*;
-import static ro.vlad.utils.ModalMessage.setReqModalMessage;
+import static ro.vlad.utils.Modal.Color.*;
+import static ro.vlad.utils.Modal.setMessage;
 
 /**
  * Controller for the Person entity
@@ -46,14 +46,14 @@ public class PersonManagementServlet extends HttpServlet {
         switch (action) {
             case "addCustomer":
                 req.setAttribute("pathToServlet", "/personManagementServlet?action=addCustomer");
-                setReqModalMessage(req, new ModalMessage(BLUE, "Input all the details and press the \"Add Customer\" button.", "/jsp/person.jsp"));
+                setMessage(req, new Modal(BLUE, "Input all the details and press the \"Add Customer\" button.", "/jsp/person/person.jsp"));
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;
 //TODO Move editing account information to userAccountManagementServlet and replace it with personal information editing
             case "editAccountInformation":
                 switch ((String) req.getSession().getAttribute("authenticatedUser")) {
                     case "admin":
-                        setReqModalMessage(req, new ModalMessage(RED, "This account cannot be edited!", null));
+                        setMessage(req, new Modal(RED, "This account cannot be edited!", null));
                         break;
                     default:
                         Person person = userAccountActions.getUserAccountByAccountName((String) req.getSession().getAttribute("authenticatedUser")).getPerson();
@@ -65,7 +65,7 @@ public class PersonManagementServlet extends HttpServlet {
                         req.setAttribute("show", "none");
                         req.setAttribute("disabled", "disabled");
                         req.setAttribute("confirmButton", "Update Profile");
-                        req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount.jsp");
+                        req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount/userAccount.jsp");
                         break;}
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}}
 //TODO implement list and delete
@@ -85,7 +85,7 @@ public class PersonManagementServlet extends HttpServlet {
                 ContactDetails contactDetails = new ContactDetails(phoneNumber, email);
                 Person person = new Person(CNP, name, address, contactDetails);
                 personActions.addPerson(person);
-                setReqModalMessage(req, new ModalMessage(GREEN, "New customer added!", null));
+                setMessage(req, new Modal(GREEN, "New customer added!", null));
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;
 //TODO This too belongs in userAccountManagementServlet
@@ -99,7 +99,7 @@ public class PersonManagementServlet extends HttpServlet {
                 entityManager.merge(userAccount);
                 entityManager.flush();
                 entityManager.getTransaction().commit();
-                setReqModalMessage(req, new ModalMessage(GREEN, "Personal details updated successfully!", null));
+                setMessage(req, new Modal(GREEN, "Personal details updated successfully!", null));
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;}}
 }

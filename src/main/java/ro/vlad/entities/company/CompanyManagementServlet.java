@@ -2,7 +2,7 @@ package ro.vlad.entities.company;
 
 import ro.vlad.entities.address.Address;
 import ro.vlad.entities.contactDetails.ContactDetails;
-import ro.vlad.utils.ModalMessage;
+import ro.vlad.utils.Modal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.util.List;
 
 import static ro.vlad.persistence.JpaListener.*;
-import static ro.vlad.utils.ModalMessage.Color.*;
-import static ro.vlad.utils.ModalMessage.setReqModalMessage;
+import static ro.vlad.utils.Modal.Color.*;
+import static ro.vlad.utils.Modal.setMessage;
 
 /**
  * Controller for the Company entity, used for transmitting all relevant information between pages
@@ -46,14 +46,14 @@ public class CompanyManagementServlet extends HttpServlet {
                 req.setAttribute("show", "block");
                 req.setAttribute("disabled", "");
                 req.setAttribute("confirmButton", "Add Company");
-                setReqModalMessage(req, new ModalMessage(BLUE, "Input company CUI and click the Verify Company button.", "/jsp/company.jsp"));
+                setMessage(req, new Modal(BLUE, "Input company CUI and click the Verify Company button.", "/jsp/company/company.jsp"));
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;
             case "listCompanies":
                 LOGGER.info("Showing all companies...");
                 List<Company> companiesList = companyActions.listCompanies();
                 req.setAttribute("companiesList", companiesList);
-                req.setAttribute("pageToShowInTheMainBody", "/jsp/list.jsp");
+                req.setAttribute("pageToShowInTheMainBody", "/jsp/company/companiesList.jsp");
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;}}
 
@@ -68,10 +68,10 @@ public class CompanyManagementServlet extends HttpServlet {
                 String newCompanyCUI = req.getParameter("newCompanyCUI");
                 if (newCompanyCUI == null || newCompanyCUI.equals("")) {
                     LOGGER.error("Tried to add a company without CUI.");
-                    setReqModalMessage(req, new ModalMessage(RED, "Please check your data. Invalid or empty CUI field.", "/jsp/company.jsp"));}
+                    setMessage(req, new Modal(RED, "Please check your data. Invalid or empty CUI field.", "/jsp/company/company.jsp"));}
                 else if (companyActions.getCompanyByCUI(newCompanyCUI) != null) {
                         LOGGER.error("Tried to add an already existing company.");
-                        setReqModalMessage(req, new ModalMessage(RED, "This company is already in the database!", "/jsp/company.jsp"));}
+                        setMessage(req, new Modal(RED, "This company is already in the database!", "/jsp/company/company.jsp"));}
                     else {
                         LOGGER.info("Starting to add a new company...");
                         String newJ = req.getParameter("newJ");
@@ -87,7 +87,7 @@ public class CompanyManagementServlet extends HttpServlet {
                         newCompany.setAddress(newAddress);
                         System.out.println(newCompany.getAddress().getAddress());
                         companyActions.addCompany(newCompany);
-                        setReqModalMessage(req, new ModalMessage(GREEN, newCompanyName + " added!", null));
+                        setMessage(req, new Modal(GREEN, newCompanyName + " added!", null));
                         LOGGER.info("New company added!");}
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;}}

@@ -3,7 +3,7 @@ package ro.vlad.entities.userAccount;
 import ro.vlad.entities.address.Address;
 import ro.vlad.entities.contactDetails.ContactDetails;
 import ro.vlad.entities.person.Person;
-import ro.vlad.utils.ModalMessage;
+import ro.vlad.utils.Modal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,8 +17,8 @@ import java.util.List;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
 import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
-import static ro.vlad.utils.ModalMessage.Color.*;
-import static ro.vlad.utils.ModalMessage.setReqModalMessage;
+import static ro.vlad.utils.Modal.Color.*;
+import static ro.vlad.utils.Modal.setMessage;
 
 /**
  * Controller for the UserAccount class.
@@ -48,7 +48,7 @@ public class UserAccountManagementServlet extends HttpServlet {
                 req.setAttribute("show", "block");
                 req.setAttribute("disabled", "");
                 req.setAttribute("confirmButton", "Add User");
-                req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount.jsp");
+                req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount/userAccount.jsp");
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;}}
 
@@ -63,15 +63,16 @@ public class UserAccountManagementServlet extends HttpServlet {
                 ContactDetails contactDetails = new ContactDetails(req.getParameter("newPhoneNumber"), req.getParameter("newEmail"));
                 Address address = new Address(req.getParameter("newAddress"));
                 Person person = new Person(req.getParameter("newCNP"), req.getParameter("newName"), address, contactDetails);
+               //TODO no more find.
                 UserAccountDeleted userAccountDeleted = entityManager.find(UserAccountDeleted.class, req.getParameter("newAccountName"));
                 if (userAccountDeleted != null) {
-                    setReqModalMessage(req, new ModalMessage(RED, "This user was invalidated, and cannot be recreated.", null));
+                    setMessage(req, new Modal(RED, "This user was invalidated, and cannot be recreated.", null));
                     LOGGER.warn("Failed to add already deleted account.");
 //TODO implement option to restore account
                     getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
                 else {
                     userAccountActions.addAccount(req.getParameter("newAccountName"), req.getParameter("newPassword"), person);
-                    setReqModalMessage(req, new ModalMessage(GREEN, "Account added successfully!", null));
+                    setMessage(req, new Modal(GREEN, "Account added successfully!", null));
                     LOGGER.info("New account added successfully!");
                     getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
                 break;
@@ -83,7 +84,7 @@ public class UserAccountManagementServlet extends HttpServlet {
                 userAccountActions.changePassword(userName, newPassword);
                 entityManagerFactory.getCache().evictAll();
                 req.getSession().setAttribute("authenticatedUser", null);
-                setReqModalMessage(req, new ModalMessage(GREEN, "Password changed! Login using your new password.", null));
+                setMessage(req, new Modal(GREEN, "Password changed! Login using your new password.", null));
                 LOGGER.info("Password changed! Session invalidated.");
                 getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 break;
@@ -92,7 +93,7 @@ public class UserAccountManagementServlet extends HttpServlet {
                 userName = (String) req.getSession().getAttribute("authenticatedUser");
                 switch (userName) {
                     case "admin":
-                        setReqModalMessage(req, new ModalMessage(RED, "This account cannot be deleted!", null));
+                        setMessage(req, new Modal(RED, "This account cannot be deleted!", null));
                         LOGGER.warn("Cannot delete admin account!");
                         getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                         break;
@@ -100,7 +101,7 @@ public class UserAccountManagementServlet extends HttpServlet {
 //TODO Implement confirmation method
                         userAccountActions.deleteAccount(userName);
                         req.getSession().setAttribute("authenticatedUser", null);
-                        setReqModalMessage(req, new ModalMessage(RED, "Account deleted and invalidated.", null));
+                        setMessage(req, new Modal(RED, "Account deleted and invalidated.", null));
                         entityManagerFactory.getCache().evictAll();
                         LOGGER.info("Account deleted! Session invalidated.");
                         getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);

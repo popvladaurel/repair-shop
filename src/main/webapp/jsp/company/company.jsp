@@ -4,14 +4,13 @@
 <html>
 	<head>
 		<title>Add Client</title>
-        <script rel="script" media="all" type="text/javascript" src="../scripts/companyActions.js" charset="UTF-8"></script>
 		<meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     </head>
 	<body>
     <br><br>
         <c:choose>
-            <c:when test="${radiata == null || radiata == false}">
+            <c:when test="${radiata == false || radiata == null}">
                 <c:set value="greenbutton" var="radiataError"></c:set>
                 <c:set value="Add Company" var="addButtonText"></c:set>
                 <c:set value="addCompany()" var="addButtonAction"></c:set>
@@ -24,7 +23,7 @@
         </c:choose>
         <div class="standardform" style="transition:0.5s">
             <div class="phoneContent">
-                <img src="../images/company_add_128.svg">
+                <img src="../../images/company_add_128.svg">
             </div>
             <div>
                 <h4>Company Information (required):</h4>
@@ -43,10 +42,10 @@
                 <input class="inputbox inputhalf" type="text" placeholder="ANAF validation message" value="${newAnafMessage}" name="newAnafMessage">
                 <input style="display:none" type="text" value="${radiata}" name="radiata">
                 <br>
-                <button type="button" class="button" onclick="location.href='../home.jsp'">Back</button>
+                <button type="button" class="button" onclick="location.href='../../home.jsp'">Back</button>
                 <button class="button ${radiataError}" onclick="${addButtonAction}">${addButtonText}</button>
                 <button class="button redbutton" type="reset">Clear Form</button>
             </div>
         </div>
-	</body>
+    </body>
 </html>

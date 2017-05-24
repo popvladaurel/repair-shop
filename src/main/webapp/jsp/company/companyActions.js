@@ -10,14 +10,14 @@ function addCompany(){
     var value = document.getElementById("newCompanyCUI").value;
     hiddenCUIinput.setAttribute("value", value);
     form.appendChild(hiddenCUIinput);
-    //create hiden input newJ, assign the value and append it to form
+    //create hidden input newJ, assign the value and append it to form
     var newJ = document.createElement("input");
     newJ.setAttribute("name", "newJ");
     newJ.setAttribute("type", "hidden");
     var value = document.getElementById("newJ").value;
     newJ.setAttribute("value", value);
     form.appendChild(newJ);
-    //create hiden input newCompanyName, assign the value and append it to form
+    //create hidden input newCompanyName, assign the value and append it to form
     var newCompanyName = document.createElement("input");
     newCompanyName.setAttribute("name", "newCompanyName");
     newCompanyName.setAttribute("type", "hidden");

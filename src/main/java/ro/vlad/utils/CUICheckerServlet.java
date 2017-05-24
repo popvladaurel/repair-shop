@@ -1,7 +1,6 @@
 package ro.vlad.utils;
 
 import org.json.JSONObject;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +12,10 @@ import java.io.IOException;
 import static ro.vlad.persistence.JpaListener.LOGGER;
 import static ro.vlad.utils.CUICheckerOpenAPI.getKey;
 import static ro.vlad.utils.CUICheckerOpenAPI.setKey;
-import static ro.vlad.utils.ModalMessage.Color.BLUE;
-import static ro.vlad.utils.ModalMessage.Color.GREEN;
-import static ro.vlad.utils.ModalMessage.Color.RED;
-import static ro.vlad.utils.ModalMessage.setReqModalMessage;
+import static ro.vlad.utils.Modal.Color.BLUE;
+import static ro.vlad.utils.Modal.Color.GREEN;
+import static ro.vlad.utils.Modal.Color.RED;
+import static ro.vlad.utils.Modal.setMessage;
 
 /**
  * The controller for CUICheckerAnafAPI and CUICheckerOpenAPI classes
@@ -38,17 +37,17 @@ public class CUICheckerServlet extends HttpServlet {
             req.setAttribute("newCompanyPhone", openAPIcompanyJSON.get("telefon").toString());
             if ((Boolean) anafAPIcompanyJSON.get("valid")) {
                 req.setAttribute("radiata", (anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
-                setReqModalMessage(req, new ModalMessage(GREEN, "Data acquired from ANAF and OpenAPI!", "/jsp/company.jsp"));}
+                setMessage(req, new Modal(GREEN, "Data acquired from ANAF and OpenAPI!", "/jsp/company/company.jsp"));}
             else {
-                setReqModalMessage(req, new ModalMessage(GREEN, "Data acquired from OpenAPI!", "/jsp/company.jsp"));}}
+                setMessage(req, new Modal(GREEN, "Data acquired from OpenAPI!", "/jsp/company/company.jsp"));}}
         else if ((Boolean) anafAPIcompanyJSON.get("valid")) {
             req.setAttribute("newCompanyCUI", anafAPIcompanyJSON.get("cui").toString());
             req.setAttribute("newCompanyName", anafAPIcompanyJSON.get("denumire").toString());
             req.setAttribute("newCompanyAddress", anafAPIcompanyJSON.get("adresa").toString());
             req.setAttribute("radiata", (anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
-            setReqModalMessage(req, new ModalMessage(GREEN, "Data acquired from ANAF!", "/jsp/company.jsp"));}
+            setMessage(req, new Modal(GREEN, "Data acquired from ANAF!", "/jsp/company/company.jsp"));}
         else {
-            setReqModalMessage(req, new ModalMessage(RED, "No API available. Start typing...", "/jsp/company.jsp"));}
+            setMessage(req, new Modal(RED, "No API available. Start typing...", "/jsp/company/company.jsp"));}
         req.setAttribute("newCompanyState", openAPIcompanyJSON.get("mesaj").toString());
         req.setAttribute("newAnafMessage", anafAPIcompanyJSON.get("mesaj").toString());
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
@@ -63,10 +62,12 @@ public class CUICheckerServlet extends HttpServlet {
                 String newOpenAPIKey = req.getParameter("openApiKey");
                 LOGGER.info("Changing OpenAPI key...");
                 setKey(newOpenAPIKey);
-                setReqModalMessage(req, new ModalMessage(GREEN, "OpenAPI key changed. Try adding a company", "/jsp/company.jsp"));
+                setMessage(req, new Modal(GREEN, "OpenAPI key changed. Try adding a company", "/jsp/company/company.jsp"));
+                break;
             case "viewKey":
                 LOGGER.info("Getting OpenAPI key...");
-                setReqModalMessage(req, new ModalMessage(BLUE, getKey(), null));}
+                setMessage(req, new Modal(BLUE, getKey(), null));
+                break;}
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
         dispatcher.forward(req, resp);}
 }

@@ -1,329 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="RepairShop@localhost">
-  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.1">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.2">
     <root id="1"/>
     <database id="2" parent="1" name="RepairShop">
-      <ObjectId>62108</ObjectId>
+      <ObjectId>16385</ObjectId>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
-    <schema id="3" parent="2" name="public">
+    <database id="3" parent="1" name="postgres">
+      <ObjectId>12493</ObjectId>
+      <Visible>1</Visible>
+    </database>
+    <schema id="4" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-05-08.19:27:32.605</IntrospectionTimestamp>
-      <IntrospectionStateNumber>12514</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-05-18.12:07:03.275</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <schema id="4" parent="2" name="pg_catalog">
+    <schema id="5" parent="2" name="pg_catalog">
       <ObjectId>11</ObjectId>
-      <IntrospectionTimestamp>2017-05-08.19:25:15.276</IntrospectionTimestamp>
-      <IntrospectionStateNumber>594</IntrospectionStateNumber>
     </schema>
-    <schema id="5" parent="2" name="pg_toast">
+    <schema id="6" parent="2" name="pg_toast">
       <ObjectId>99</ObjectId>
-      <IntrospectionTimestamp>2017-05-08.19:25:15.276</IntrospectionTimestamp>
-      <IntrospectionStateNumber>533</IntrospectionStateNumber>
     </schema>
-    <schema id="6" parent="2" name="pg_temp_1">
+    <schema id="7" parent="2" name="pg_temp_1">
       <ObjectId>11848</ObjectId>
-      <IntrospectionTimestamp>2017-05-08.19:25:15.276</IntrospectionTimestamp>
     </schema>
-    <schema id="7" parent="2" name="pg_toast_temp_1">
+    <schema id="8" parent="2" name="pg_toast_temp_1">
       <ObjectId>11849</ObjectId>
-      <IntrospectionTimestamp>2017-05-08.19:25:15.276</IntrospectionTimestamp>
     </schema>
-    <schema id="8" parent="2" name="information_schema">
+    <schema id="9" parent="2" name="information_schema">
       <ObjectId>12205</ObjectId>
-      <IntrospectionTimestamp>2017-05-08.19:25:15.276</IntrospectionTimestamp>
-      <IntrospectionStateNumber>592</IntrospectionStateNumber>
     </schema>
-    <sequence id="9" parent="3" name="addresses_address_id_seq">
-      <ObjectId>62111</ObjectId>
-      <StateNumber>12504</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-      <BelongsToColumn>1</BelongsToColumn>
-    </sequence>
-    <sequence id="10" parent="3" name="companies_address_address_id_seq">
-      <ObjectId>62119</ObjectId>
-      <StateNumber>12505</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-      <BelongsToColumn>1</BelongsToColumn>
-    </sequence>
-    <sequence id="11" parent="3" name="companies_contactdetails_contact_id_seq">
-      <ObjectId>62121</ObjectId>
-      <StateNumber>12505</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-      <BelongsToColumn>1</BelongsToColumn>
-    </sequence>
-    <sequence id="12" parent="3" name="contactdetails_contact_id_seq">
-      <ObjectId>62133</ObjectId>
-      <StateNumber>12506</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-      <BelongsToColumn>1</BelongsToColumn>
-    </sequence>
-    <sequence id="13" parent="3" name="hibernate_sequence">
-      <ObjectId>62109</ObjectId>
-      <StateNumber>12503</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <sequence id="14" parent="3" name="persons_address_address_id_seq">
-      <ObjectId>62149</ObjectId>
-      <StateNumber>12508</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-      <BelongsToColumn>1</BelongsToColumn>
-    </sequence>
-    <sequence id="15" parent="3" name="persons_contactdetails_contact_id_seq">
-      <ObjectId>62151</ObjectId>
-      <StateNumber>12508</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-      <BelongsToColumn>1</BelongsToColumn>
-    </sequence>
-    <table id="16" parent="3" name="addresses">
-      <ObjectId>62113</ObjectId>
-      <StateNumber>12512</StateNumber>
-    </table>
-    <table id="17" parent="3" name="companies">
-      <ObjectId>62123</ObjectId>
-      <StateNumber>12511</StateNumber>
-    </table>
-    <table id="18" parent="3" name="contactdetails">
-      <ObjectId>62135</ObjectId>
-      <StateNumber>12513</StateNumber>
-    </table>
-    <table id="19" parent="3" name="deleteduseraccounts">
-      <ObjectId>62144</ObjectId>
-      <StateNumber>12507</StateNumber>
-    </table>
-    <table id="20" parent="3" name="persons">
-      <ObjectId>62153</ObjectId>
-      <StateNumber>12514</StateNumber>
-    </table>
-    <table id="21" parent="3" name="useraccounts">
-      <ObjectId>62163</ObjectId>
-      <StateNumber>12514</StateNumber>
-    </table>
-    <column id="22" parent="16" name="address_id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12504</StateNumber>
-      <SequenceName>addresses_address_id_seq</SequenceName>
-      <DefaultExpression>nextval(&apos;addresses_address_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="23" parent="16" name="address">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12504</StateNumber>
-    </column>
-    <index id="24" parent="16" name="addresses_pkey">
-      <ObjectId>62117</ObjectId>
-      <ColNames>address_id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="25" parent="16" name="addresses_pkey">
-      <ObjectId>62118</ObjectId>
-      <ColNames>address_id</ColNames>
-      <UnderlyingIndexName>addresses_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="26" parent="17" name="cui">
-      <Position>1</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12505</StateNumber>
-    </column>
-    <column id="27" parent="17" name="iban">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12505</StateNumber>
-    </column>
-    <column id="28" parent="17" name="j">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12505</StateNumber>
-    </column>
-    <column id="29" parent="17" name="name">
-      <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12505</StateNumber>
-    </column>
-    <column id="30" parent="17" name="address_address_id">
-      <Position>5</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12505</StateNumber>
-      <SequenceName>companies_address_address_id_seq</SequenceName>
-      <DefaultExpression>nextval(&apos;companies_address_address_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="31" parent="17" name="contactdetails_contact_id">
-      <Position>6</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12505</StateNumber>
-      <SequenceName>companies_contactdetails_contact_id_seq</SequenceName>
-      <DefaultExpression>nextval(&apos;companies_contactdetails_contact_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <index id="32" parent="17" name="companies_pkey">
-      <ObjectId>62131</ObjectId>
-      <ColNames>cui</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="33" parent="17" name="companies_pkey">
-      <ObjectId>62132</ObjectId>
-      <ColNames>cui</ColNames>
-      <UnderlyingIndexName>companies_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="34" parent="17" name="fklx6c4x05tukyw0ac2m33ic2ln">
-      <ObjectId>62171</ObjectId>
-      <ColNames>address_address_id</ColNames>
-      <RefTableName>addresses</RefTableName>
-      <RefKeyName>addresses_pkey</RefKeyName>
-      <RefColNames>address_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="35" parent="17" name="fkle6ji1ah7i9spjknnnbi9jx7">
-      <ObjectId>62176</ObjectId>
-      <ColNames>contactdetails_contact_id</ColNames>
-      <RefTableName>contactdetails</RefTableName>
-      <RefKeyName>contactdetails_pkey</RefKeyName>
-      <RefColNames>contact_id</RefColNames>
-    </foreign-key>
-    <column id="36" parent="18" name="contact_id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12506</StateNumber>
-      <SequenceName>contactdetails_contact_id_seq</SequenceName>
-      <DefaultExpression>nextval(&apos;contactdetails_contact_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="37" parent="18" name="email">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12506</StateNumber>
-    </column>
-    <column id="38" parent="18" name="phonenumber">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12506</StateNumber>
-    </column>
-    <index id="39" parent="18" name="contactdetails_pkey">
-      <ObjectId>62142</ObjectId>
-      <ColNames>contact_id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="40" parent="18" name="contactdetails_pkey">
-      <ObjectId>62143</ObjectId>
-      <ColNames>contact_id</ColNames>
-      <UnderlyingIndexName>contactdetails_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="41" parent="19" name="accountname">
-      <Position>1</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12507</StateNumber>
-    </column>
-    <column id="42" parent="19" name="datedeleted">
-      <Position>2</Position>
-      <DataType>timestamp|0</DataType>
-      <StateNumber>12507</StateNumber>
-    </column>
-    <index id="43" parent="19" name="deleteduseraccounts_pkey">
-      <ObjectId>62147</ObjectId>
-      <ColNames>accountname</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="44" parent="19" name="deleteduseraccounts_pkey">
-      <ObjectId>62148</ObjectId>
-      <ColNames>accountname</ColNames>
-      <UnderlyingIndexName>deleteduseraccounts_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="45" parent="20" name="cnp">
-      <Position>1</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12508</StateNumber>
-    </column>
-    <column id="46" parent="20" name="name">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12508</StateNumber>
-    </column>
-    <column id="47" parent="20" name="address_address_id">
-      <Position>3</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12508</StateNumber>
-      <SequenceName>persons_address_address_id_seq</SequenceName>
-      <DefaultExpression>nextval(&apos;persons_address_address_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="48" parent="20" name="contactdetails_contact_id">
-      <Position>4</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12508</StateNumber>
-      <SequenceName>persons_contactdetails_contact_id_seq</SequenceName>
-      <DefaultExpression>nextval(&apos;persons_contactdetails_contact_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <index id="49" parent="20" name="persons_pkey">
-      <ObjectId>62161</ObjectId>
-      <ColNames>cnp</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="50" parent="20" name="persons_pkey">
-      <ObjectId>62162</ObjectId>
-      <ColNames>cnp</ColNames>
-      <UnderlyingIndexName>persons_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="51" parent="20" name="fkay5mklul677sb78fjyp3h8nv0">
-      <ObjectId>62181</ObjectId>
-      <ColNames>address_address_id</ColNames>
-      <RefTableName>addresses</RefTableName>
-      <RefKeyName>addresses_pkey</RefKeyName>
-      <RefColNames>address_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="52" parent="20" name="fk74ta1uhwydjaqylyhdfdtk9u3">
-      <ObjectId>62186</ObjectId>
-      <ColNames>contactdetails_contact_id</ColNames>
-      <RefTableName>contactdetails</RefTableName>
-      <RefKeyName>contactdetails_pkey</RefKeyName>
-      <RefColNames>contact_id</RefColNames>
-    </foreign-key>
-    <column id="53" parent="21" name="account_id">
-      <Position>1</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>12509</StateNumber>
-    </column>
-    <column id="54" parent="21" name="passwordhash">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12509</StateNumber>
-    </column>
-    <column id="55" parent="21" name="person_cnp">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>12509</StateNumber>
-    </column>
-    <index id="56" parent="21" name="useraccounts_pkey">
-      <ObjectId>62169</ObjectId>
-      <ColNames>account_id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="57" parent="21" name="useraccounts_pkey">
-      <ObjectId>62170</ObjectId>
-      <ColNames>account_id</ColNames>
-      <UnderlyingIndexName>useraccounts_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="58" parent="21" name="fkj7nv3417elgt50dofsn9bhpt">
-      <ObjectId>62191</ObjectId>
-      <ColNames>person_cnp</ColNames>
-      <RefTableName>persons</RefTableName>
-      <RefKeyName>persons_pkey</RefKeyName>
-      <RefColNames>cnp</RefColNames>
-    </foreign-key>
+    <schema id="10" parent="3" name="public">
+      <ObjectId>2200</ObjectId>
+      <IntrospectionTimestamp>2017-05-18.12:07:03.459</IntrospectionTimestamp>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="11" parent="3" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="12" parent="3" name="pg_toast">
+      <ObjectId>99</ObjectId>
+    </schema>
+    <schema id="13" parent="3" name="pg_temp_1">
+      <ObjectId>11848</ObjectId>
+    </schema>
+    <schema id="14" parent="3" name="pg_toast_temp_1">
+      <ObjectId>11849</ObjectId>
+    </schema>
+    <schema id="15" parent="3" name="information_schema">
+      <ObjectId>12205</ObjectId>
+    </schema>
   </database-model>
 </dataSource>

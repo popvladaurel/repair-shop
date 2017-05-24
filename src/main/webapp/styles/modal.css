@@ -23,7 +23,8 @@
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
-    animation-duration: 0.4s;}
+    animation-duration: 0.4s;
+    transition: 0.5s;}
 
 .modal a:hover, .modal a:focus{
     color: rgb(241, 241, 241);}

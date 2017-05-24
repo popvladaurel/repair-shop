@@ -10,8 +10,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * Connects to the anaf.ro API and retrieves relevant information, depending on the input CUI
@@ -19,11 +23,13 @@ import java.io.InputStreamReader;
  */
 public class CUICheckerAnafAPI {
     public static JSONObject checkCUI(String CUI) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         JSONObject companyJSON = new JSONObject();
+        System.setProperty("javax.net.ssl.trustStore", new File(CUICheckerAnafAPI.class.getResource("/appKeyStore").getFile()).toString());
         try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
             HttpPost request = new HttpPost("https://webservicesp.anaf.ro:/PlatitorTvaRest/api/v1/ws/tva");
             request.addHeader("content-type", "application/json");
-            request.setEntity(new StringEntity("[{\"cui\": " + CUI + ", \"data\":\"2017-04-24\"}]"));
+            request.setEntity(new StringEntity("[{\"cui\": " + CUI + ", \"data\":\"" + dateTimeFormatter.format(LocalDate.now()) + "\"}]"));
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 InputStreamReader inputStreamReader = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
