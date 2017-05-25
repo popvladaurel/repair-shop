@@ -18,10 +18,16 @@
         <%--START hide page elements before login--%>
         <c:choose>
             <c:when test="${sessionScope.authenticatedUser != null}">
+                <c:choose>
+                    <c:when test="${userImage == null}">
+                        <c:set value="images/user_128.svg" var="userImage"></c:set>
+                    </c:when>
+                </c:choose>
                 <c:set value="block" var="showElement"></c:set>
                 <c:set value="none" var="hideElement"></c:set>
             </c:when>
             <c:when test="${sessionScope.authenticatedUser == null}">
+                <c:set value="images/user_128.svg" var="userImage"></c:set>
                 <c:set value="none" var="showElement"></c:set>
                 <c:set value="block" var="hideElement"></c:set>
             </c:when>
@@ -30,18 +36,19 @@
         <!--START user options sideBar-->
         <div id="sidenav1" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav(1)">&times;</a>
-            <img src="images/user_128.svg">
-            <p style="color:white; display: ${showElement}">Welcome ${username}</p>
+            <img style="width: 128px; height: 128px; border-radius: 50%;" src=${userImage}>
+            <p style="color:white; display: ${showElement}">Welcome ${userName}</p>
             <!--START login-->
             <div style="display: ${hideElement}">
-                <button class="button googlebutton">Sign in using Google</button><br>
+                <a href="https://accounts.google.com/o/oauth2/auth?client_id=523615475962-25r4vfdsbj9cjjklic7tnu34f622tmh5.apps.googleusercontent.com&response_type=code&scope=email&redirect_uri=http://localhost:8080/oauth2callback&approval_prompt=force">
+                    <button class="button googlebutton">Sign in using Google</button>
+                </a>
                 <p style="color:white;">or</p>
                 <form method="POST" action="/loginServlet">
                     <input class="inputbox" type="text" placeholder="Input Username" name="loginUserName" autofocus required>
                     <input class="inputbox" type="password" placeholder="Input Password" name="loginPassword" required>
                     <button class="button greenbutton" type="submit">Sign in</button><br>
                 </form>
-
             </div>
 
             <!--START available account actions-->

@@ -65,7 +65,8 @@ h1 {
     outline: none;}
 
 .googlebutton {
-    background: rgb(255, 255, 255) url("/images/google_btn.svg") no-repeat left;
+    background: rgb(255, 255, 204) url("/images/google_btn.png") no-repeat left;
+    background-position-x: 10px;
     display:inline-block;
     vertical-align:middle;}
 
