@@ -40,9 +40,9 @@
             <p style="color:white; display: ${showElement}">Welcome ${userName}</p>
             <!--START login-->
             <div style="display: ${hideElement}">
-                <a href="https://accounts.google.com/o/oauth2/auth?client_id=523615475962-25r4vfdsbj9cjjklic7tnu34f622tmh5.apps.googleusercontent.com&response_type=code&scope=email&redirect_uri=http://localhost:8080/oauth2callback&approval_prompt=force">
+                <form method="POST" action="/googleSignInServlet">
                     <button class="button googlebutton">Sign in using Google</button>
-                </a>
+                </form>
                 <p style="color:white;">or</p>
                 <form method="POST" action="/loginServlet">
                     <input class="inputbox" type="text" placeholder="Input Username" name="loginUserName" autofocus required>
@@ -148,6 +148,17 @@
             <form method="GET" action="/InstallCertServlet">
                 <input type="hidden" name="action" value="viewKey">
                 <button class="button" type="submit">Import ANAF certificate</button>
+            </form>
+            <!--START setup Google parameters-->
+            <form method="GET" action="/googleSignInServlet">
+                <input type="hidden" name="action" value="setupParameters">
+                <input id="newCLIENT_IDinput" class="inputbox" style="display:none;" type="text" placeholder="Paste your Cliend ID" name="CLIENT_ID"
+                       oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
+                <input id="newCLIENT_SECRETinput" class="inputbox" style="display:none" type="text" placeholder="Paste your Client Secret" name="CLIENT_SECRET"
+                       oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
+                <input id="newREDIRECT_URLinput" class="inputbox" style="display:none" type="text" placeholder="Paste your Redirect URL" name="REDIRECT_URL"
+                       oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
+                <button id="setupbutton" class="button" onclick="setupGoogleParameters()">Setup Google Parameters</button>
             </form>
 
 <!--TODO add method to disable the modal messages, but keep confirmations-->

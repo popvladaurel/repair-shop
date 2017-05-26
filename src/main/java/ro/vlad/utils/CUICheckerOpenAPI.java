@@ -18,7 +18,7 @@ import static ro.vlad.persistence.JpaListener.LOGGER;
  * Also provides a method of changing the key required for valid interrogations
  */
 public class CUICheckerOpenAPI {
-    public static String key;
+    private static String key;
 
     public static JSONObject checkCUI(String CUI) {
         JSONObject companyJSON = new JSONObject();

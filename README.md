@@ -8,7 +8,7 @@ Google login is now functional!
 
 24.05.2017:  
 ````
-Added button to import ANAF SSL/TLS certificate after deploy into our own key store. 
+Added button to import ANAF SSL/TLS certificate after deploy into our key store. 
 No more manually messing with JRE's cacerts Certificates File...
 ````
 
