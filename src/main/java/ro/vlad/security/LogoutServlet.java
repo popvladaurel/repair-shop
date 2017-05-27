@@ -25,9 +25,10 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("Logout detected. Invalidating session...");
         HttpSession session = req.getSession(false);
-        session.setAttribute("authenticatedUser", null);
-        session.invalidate();
+        if (session != null) {
+            session.invalidate();
+            LOGGER.info("Session invalidated!");}
+        req.getSession();
         setMessage(req, new Modal(GREEN, "Have a nice day!",  null));
-        LOGGER.info("Session invalidated!");
-        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
+        resp.sendRedirect("../../home.jsp");}
 }

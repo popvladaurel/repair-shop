@@ -27,6 +27,7 @@ h1 {
 
 .inputbox {
     text-align: center;
+    background-color: rgb(255, 255, 255);
     width: 200px;
     padding: 10px;
     margin: 10px auto;
@@ -39,8 +40,11 @@ h1 {
     margin: 10px 2px;
     border-radius: 4px;}
 
+.inputdouble {
+    width: 425px;}
+
 .inputhalf {
-    width:314px;}
+    width: 314px;}
 
 .inputwide {
     width: 655px;}
@@ -85,10 +89,34 @@ h1 {
 .greenbutton {
     background-color: rgba(34, 187, 69, 1);
     color: rgb(0, 0, 0);}
+#searchBox {
+    background: rgb(255, 255, 255) url("/images/find_24.svg") no-repeat left;
+    background-position-x: 10px;}
+
+#searchableTable {
+    width: 100%;}
+
+#searchableTable th, #searchableTable td {
+    text-align: left;
+    padding: 8px;}
+
+#searchableTable tr {
+    border-bottom: 1px solid rgb(0, 0, 0);}
+
+#searchableTable tr.header, #searchableTable tr:hover {
+    background-color: rgb(241, 241, 241);}
+
+@media screen and (max-width: 736px) {
+    .hideOnMobile {display: none;}}
+
+@media screen and (max-width: 950px) {
+    .phoneContent {display: none;}
+    #preferences {display: inline-flex;}}
 
 @media screen and (max-width: 736px) {
     .phoneContent {display: none;}
-    .preferences {display: inline-flex;}}
+    #preferences {display: inline-flex;}
+    .inputdouble {Width: 425px;}}
 
 @media screen and (max-width: 1002px) {
     .inputwide {width: 424px;}
@@ -96,4 +124,5 @@ h1 {
 
 @media screen and (max-width: 767px) {
     .inputwide {width: 200px;}
-    .inputhalf {width: 200px;}}
+    .inputhalf {width: 200px;}
+    .inputdouble {Width: 200px;}}

@@ -56,3 +56,36 @@ function listCompanies() {
     form.setAttribute("action", "/companyManagementServlet?action=listCompanies");
     document.body.appendChild(form);
     form.submit();}
+
+function sortCompanies(colIndex) {
+    var targetTable = document.getElementById("searchableTable");
+    switching = true;
+    while (switching) {
+        var switching = false;
+        var rowData = targetTable.getElementsByTagName("tr");
+        for (var i = 1; i < (rowData.length - 1); i++) {
+            var shouldSwitch = false;
+            var x = rowData[i].getElementsByTagName("td")[colIndex];
+            var y = rowData[i + 1].getElementsByTagName("td")[colIndex];
+            if (x.innerHTML.toUpperCase() > y.innerHTML.toUpperCase()) {
+                shouldSwitch= true;
+                break;}}
+        if (shouldSwitch) {
+            rowData[i].parentNode.insertBefore(rowData[i + 1], rowData[i]);
+            switching = true;}}}
+
+function searchCompanies() {
+    var searchText = document.getElementById('searchBox').value.toUpperCase();
+    var targetTable = document.getElementById('searchableTable');
+    var targetTableColCount;
+    for (var rowIndex = 0; rowIndex < targetTable.rows.length; rowIndex++) {
+        var rowData = '';
+        if (rowIndex == 0) {
+            targetTableColCount = targetTable.rows.item(rowIndex).cells.length;
+            continue;}
+        for (var colIndex = 0; colIndex < targetTableColCount; colIndex++) {
+            rowData += targetTable.rows.item(rowIndex).cells.item(colIndex).textContent.toUpperCase();}
+        if (rowData.indexOf(searchText) == -1)
+            targetTable.rows.item(rowIndex).style.display = 'none';
+        else
+            targetTable.rows.item(rowIndex).style.display = 'table-row';}}

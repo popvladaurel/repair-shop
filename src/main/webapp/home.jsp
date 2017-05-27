@@ -196,6 +196,6 @@
             </div>
         </div>
         <script rel="script" media="all" type="text/javascript" src="scripts/modal.js"></script>
-        <script rel="script" media="all" type="text/javascript" src="jsp/company/companyActions.js" charset="UTF-8"></script>
+        <script rel="script" media="all" type="text/javascript" src="scripts/companyActions.js" charset="UTF-8"></script>
     </body>
 </html>
