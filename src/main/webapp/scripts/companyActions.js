@@ -75,8 +75,8 @@ function sortCompanies(colIndex) {
             switching = true;}}}
 
 function searchCompanies() {
-    var searchText = document.getElementById('searchBox').value.toUpperCase();
-    var targetTable = document.getElementById('searchableTable');
+    var searchText = document.getElementById("searchBox").value.toUpperCase();
+    var targetTable = document.getElementById("searchableTable");
     var targetTableColCount;
     for (var rowIndex = 0; rowIndex < targetTable.rows.length; rowIndex++) {
         var rowData = '';
@@ -86,6 +86,21 @@ function searchCompanies() {
         for (var colIndex = 0; colIndex < targetTableColCount; colIndex++) {
             rowData += targetTable.rows.item(rowIndex).cells.item(colIndex).textContent.toUpperCase();}
         if (rowData.indexOf(searchText) == -1)
-            targetTable.rows.item(rowIndex).style.display = 'none';
+            targetTable.rows.item(rowIndex).style.display = "none";
         else
-            targetTable.rows.item(rowIndex).style.display = 'table-row';}}
+            targetTable.rows.item(rowIndex).style.display = "table-row";}}
+
+function showMenu(originRow) {
+    hideMenu();
+    var targetTable = document.getElementById("searchableTable");
+    var originRowIndex = originRow.rowIndex;
+    var rowToShow = originRowIndex + 1;
+    hideMenu();
+    targetTable.rows.item(rowToShow).style.height = "60px";
+    targetTable.rows.item(rowToShow).style.display = "table-row";}
+
+function hideMenu() {
+    var menus = document.getElementsByClassName("table-menu");
+    for (var i = 0; i < menus.length; i++) {
+        menus[i].style.height = 0;
+        menus[i].style.display = "none";}}

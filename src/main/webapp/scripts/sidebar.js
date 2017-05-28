@@ -52,7 +52,6 @@ function setupGoogleParameters(){
     document.getElementById("newREDIRECT_URLinput").setAttribute("onclick", "hidePasswordField()");
     document.getElementById("setupbutton").setAttribute("type", "submit");}
 
-
 function hideKeyInputField() {
     document.getElementById("newkeyinput").setAttribute("style", "display:none");
     document.getElementById("newkeybutton").setAttribute("onclick", "hideKeyInputField()");

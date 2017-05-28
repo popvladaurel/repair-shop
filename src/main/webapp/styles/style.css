@@ -23,7 +23,7 @@ h1 {
     margin: 0 auto;
     border: 1px solid rgb(86, 180, 239);
     border-radius: 5px;
-    box-shadow: inset 0px 10px 15px 5px rgba(0,0,0,.05), 0 0 8px rgb(255, 255, 204)}
+    box-shadow: inset 0 10px 15px 5px rgba(0,0,0,.05), 0 0 8px rgb(255, 255, 204)}
 
 .inputbox {
     text-align: center;
@@ -54,7 +54,7 @@ h1 {
     background: rgb(255, 255, 204) no-repeat center top;
     align-content: center;
     height:40px;
-    margin: 10px 0px;
+    margin: 10px 0;
     width: 222px;
     border-radius: 5px;}
 
@@ -89,22 +89,10 @@ h1 {
 .greenbutton {
     background-color: rgba(34, 187, 69, 1);
     color: rgb(0, 0, 0);}
+
 #searchBox {
     background: rgb(255, 255, 255) url("/images/find_24.svg") no-repeat left;
     background-position-x: 10px;}
-
-#searchableTable {
-    width: 100%;}
-
-#searchableTable th, #searchableTable td {
-    text-align: left;
-    padding: 8px;}
-
-#searchableTable tr {
-    border-bottom: 1px solid rgb(0, 0, 0);}
-
-#searchableTable tr.header, #searchableTable tr:hover {
-    background-color: rgb(241, 241, 241);}
 
 @media screen and (max-width: 736px) {
     .hideOnMobile {display: none;}}
