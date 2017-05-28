@@ -63,7 +63,7 @@ public class UserAccountManagementServlet extends HttpServlet {
                 ContactDetails contactDetails = new ContactDetails(req.getParameter("newPhoneNumber"), req.getParameter("newEmail"));
                 Address address = new Address(req.getParameter("newAddress"));
                 Person person = new Person(req.getParameter("newCNP"), req.getParameter("newName"), address, contactDetails);
-               //TODO no more find.
+//TODO no more find.
                 UserAccountDeleted userAccountDeleted = entityManager.find(UserAccountDeleted.class, req.getParameter("newAccountName"));
                 if (userAccountDeleted != null) {
                     setMessage(req, new Modal(RED, "This user was invalidated, and cannot be recreated.", null));

@@ -1,1 +1,13 @@
-INSERT INTO public.useraccounts (account_id, passwordhash) VALUES ('admin', 'sha1:64000:18:79UdRxJXqxw1hUp1BbNAo55t2ElCzbfe:qUGu2lIw1VcEBFo2D6XuG5Xt');
+INSERT INTO public.addresses (address_id, address) VALUES (1, 'Șos. Virtuții, 148, București, Sect 6, Municipiul București');
+INSERT INTO public.addresses (address_id, address) VALUES (3, 'Str. Henri Barbusse, 44-46, Cluj-napoca, Cluj');
+INSERT INTO public.addresses (address_id, address) VALUES (5, 'Str. Barbu Vacarescu, 120-144, București, Sect 2, Municipiul București');
+INSERT INTO public.addresses (address_id, address) VALUES (7, 'Str. Lugoj, 4, Ghiroda, Timiș');
+INSERT INTO public.contactdetails (contact_id, email, phonenumber) VALUES (2, null, '0212038100');
+INSERT INTO public.contactdetails (contact_id, email, phonenumber) VALUES (4, null, 'null');
+INSERT INTO public.contactdetails (contact_id, email, phonenumber) VALUES (6, null, 'null');
+INSERT INTO public.contactdetails (contact_id, email, phonenumber) VALUES (8, null, '225223');
+INSERT INTO public.companies (cui, iban, j, name, address_address_id, contactdetails_contact_id) VALUES ('14399840', '', 'J40/372/2002', 'Dante International S.A.', 1, 2);
+INSERT INTO public.companies (cui, iban, j, name, address_address_id, contactdetails_contact_id) VALUES ('34526760', '', 'J12/1483/2015', 'Educație Informală S.A.', 3, 4);
+INSERT INTO public.companies (cui, iban, j, name, address_address_id, contactdetails_contact_id) VALUES ('15991149', '', 'J40/17052/2003', 'Kaufland Romania Scs', 5, 6);
+INSERT INTO public.companies (cui, iban, j, name, address_address_id, contactdetails_contact_id) VALUES ('1824000', '', 'J35/3497/1991', 'Berg Computers S.R.L.', 7, 8);
+INSERT INTO public.useraccounts (account_id, passwordhash, person_cnp) VALUES ('admin', 'sha1:64000:18:79UdRxJXqxw1hUp1BbNAo55t2ElCzbfe:qUGu2lIw1VcEBFo2D6XuG5Xt', null);

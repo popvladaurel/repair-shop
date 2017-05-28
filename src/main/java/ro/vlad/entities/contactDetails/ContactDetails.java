@@ -5,7 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table (name = "contactdetails")
 public class ContactDetails {
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) @Column (name = "contact_id", columnDefinition = "serial") private Long contactDetailsId;
+    @Id
+    @SequenceGenerator(name="sequencer",  initialValue=10, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="sequencer")
+    @Column (name = "contact_id", columnDefinition = "serial") private Long contactDetailsId;
     @Column (name = "phonenumber") private String phoneNumber;
     @Column (name = "email") private String email;
 
