@@ -11,8 +11,15 @@ Google login is now functional!
 Added button to import ANAF SSL/TLS certificate after deploy into our key store. 
 No more manually messing with JRE's cacerts Certificates File...
 ````
+**Screenshots**  
 
-To work, the WebApp needs a pre-existing PostgreSQL database called "RepairShop".
+![Welcome Page](screenshots/welcome_screen.png "Welcome Screen")
+
+![Create a new account](screenshots/new_account.png "New Account")
+
+![View Companies](screenshots/view_companies.png "View Companies List")
+
+
 
 **Credits must go to:**
 
