@@ -66,7 +66,6 @@ public class InstallCertServlet extends HttpServlet {
         Integer port = 443;
         File file = new File(getClass().getResource("/appKeyStore").getFile());
         LOGGER.info("Loading KeyStore " + file + "...");
-
         try (InputStream inputStream = new FileInputStream(file)){
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
             keyStore.load(inputStream, pass.toCharArray());
@@ -86,7 +85,6 @@ public class InstallCertServlet extends HttpServlet {
                 socket.close();}
             catch (SSLException e) {}
             X509Certificate[] chain = savingTrustManager.chain;
-
             if (chain == null) {
                 LOGGER.info("Could not obtain server certificate chain");
                 return;}
@@ -117,7 +115,6 @@ public class InstallCertServlet extends HttpServlet {
         setMessage(req, new Modal(GREEN, "ANAF certificate installed!", "/jsp/company/company.jsp"));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
         dispatcher.forward(req, resp);}
-
 
     private static final char[] HEXDIGITS = "0123456789abcdef".toCharArray();
 

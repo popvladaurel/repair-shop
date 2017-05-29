@@ -79,7 +79,7 @@ function searchCompanies() {
     var targetTable = document.getElementById("searchableTable");
     var targetTableColCount;
     for (var rowIndex = 0; rowIndex < targetTable.rows.length; rowIndex++) {
-        var rowData = '';
+        var rowData = "";
         if (rowIndex == 0) {
             targetTableColCount = targetTable.rows.item(rowIndex).cells.length;
             continue;}
@@ -90,17 +90,19 @@ function searchCompanies() {
         else
             targetTable.rows.item(rowIndex).style.display = "table-row";}}
 
-function showMenu(originRow) {
-    hideMenu();
+function showActionsModal(originRow) {
+    hideActionsModal();
     var targetTable = document.getElementById("searchableTable");
     var originRowIndex = originRow.rowIndex;
-    var rowToShow = originRowIndex + 1;
-    hideMenu();
-    targetTable.rows.item(rowToShow).style.height = "60px";
-    targetTable.rows.item(rowToShow).style.display = "table-row";}
+    var CUIFromCell = targetTable.rows.item(originRowIndex).cells.item(0).textContent.toUpperCase();
+    var companyNameFromCell = targetTable.rows.item(originRowIndex).cells.item(2).textContent;
+    document.getElementById("companyCUIfromTable").setAttribute("value", CUIFromCell);
+    document.getElementById("modalHeader").style.height = "130px";
+    document.getElementById("modalHeader").style.backgroundColor = "rgba(17, 94, 150, 0.80)";
+    document.getElementById("modalText").textContent = companyNameFromCell;
+    document.getElementById("companyActionsButtons").style.display = "block";
+    document.getElementById("modalDiv").style.display = "block";}
 
-function hideMenu() {
-    var menus = document.getElementsByClassName("table-menu");
-    for (var i = 0; i < menus.length; i++) {
-        menus[i].style.height = 0;
-        menus[i].style.display = "none";}}
+function hideActionsModal() {
+    document.getElementById('modalDiv').style.height = "0";
+    document.getElementById('modalDiv').style.display = "none";}

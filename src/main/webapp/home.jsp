@@ -187,10 +187,15 @@
             <!--START show the messages-->
             <div id="modalDiv" class="modal" style="display:${modalShow}">
                 <div id="modalContent" class="modal-content">
-                    <div class="modal-header" style="background-color:${modalColor}">
+                    <div id="modalHeader" class="modal-header" style="background-color:${modalColor}">
+                        <input type="hidden" id="companyCUIfromTable">
                         <span class="close">&times;</span>
                         <h2 id="modalText">${modal}</h2>
-                        <button id="modalButton" class="button" style="display:${modalButtonShow}; margin-left:250px; transition:0.5s;" href=${servletPath}>Yes</button>
+                        <div id="companyActionsButtons" style="display: none; transition: 0.5s;">
+                            <button id="detailsButton" type="button" class="button" onclick="">Details</button>
+                            <button id="editButton"type="button" class="button" onclick="">Edit</button>
+                            <button id="removeButton" type="button" class="button" onclick="">Remove</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,7 +203,5 @@
         <script rel="script" media="all" type="text/javascript" src="scripts/modal.js"></script>
         <script rel="script" media="all" type="text/javascript" src="scripts/companyActions.js" charset="UTF-8"></script>
         <script rel="script" media="all" type="text/javascript" src="jsp/userAccount/userAccountActions.js" charset="UTF-8"></script>
-
-
     </body>
 </html>

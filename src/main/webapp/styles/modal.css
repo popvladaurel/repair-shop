@@ -6,6 +6,7 @@
     top: 0;
     width: 100%;
     overflow: auto;
+    transition: 0.5s;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.1);
     -webkit-animation-name: fadeIn;
@@ -43,7 +44,8 @@
 
 .modal-header {
     padding: 2px 16px;
-    color: white;}
+    color: white;
+    transition: 0.5s;}
 
 @-webkit-keyframes slideIn {
     from {bottom: -300px; opacity: 0}

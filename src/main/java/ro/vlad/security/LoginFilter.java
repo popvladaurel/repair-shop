@@ -29,7 +29,7 @@ public class LoginFilter implements Filter {
         if (loggedIn || loginRequest) {
             LOGGER.info("Authenticated! You may pass...");
             chain.doFilter(request, response);}
-            else {
+        else {
             LOGGER.error("Not authenticated! You shall not pass! Redirecting to home.jsp...");
             response.sendRedirect("../../home.jsp");}}
 

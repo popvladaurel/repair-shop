@@ -19,15 +19,15 @@ function openNav(sidenavNumberToOpen, sidenavNumberToClose1, sidenavNumberToClos
         document.getElementById("main").style.marginRight = "0";
         document.getElementById("modalDiv").style.marginRight = "0";
         document.getElementById("modalContent").style.marginRight = "0";
-        document.getElementById("modalText").style.paddingLeft = "0";
-        document.getElementById("modalButton").style.marginLeft = "0";}
+        document.getElementById("companyActionsButtons").style.marginLeft = "0";
+        document.getElementById("modalText").style.paddingLeft = "0";}
     else {
         document.getElementById("main").style.marginRight = "250px";
         document.getElementById("modalContent").style.marginRight = "250px";
+        document.getElementById("companyActionsButtons").style.marginLeft = "250px";
         document.getElementById("modalDiv").style.marginRight = "250px";
         document.getElementById("preferences").style.marginRight = "250px";
-        document.getElementById("modalText").style.paddingLeft = "250px";
-        document.getElementById("modalButton").style.marginLeft = "250px";}}
+        document.getElementById("modalText").style.paddingLeft = "250px";}}
 
 function closeNav(sidenavNumberToClose) {
     document.getElementById("sidenav" + sidenavNumberToClose).style.width = "0";
@@ -35,8 +35,8 @@ function closeNav(sidenavNumberToClose) {
     document.getElementById("preferences").style.marginRight = "10px";
     document.getElementById("modalDiv").style.marginRight = "0";
     document.getElementById("modalContent").style.marginRight = "0";
-    document.getElementById("modalText").style.paddingLeft = "0";
-    document.getElementById("modalButton").style.marginLeft = "0";}
+    document.getElementById("companyActionsButtons").style.marginLeft = "0";
+    document.getElementById("modalText").style.paddingLeft = "0";}
 
 function changeOpenAPIKey(){
     document.getElementById("newkeyinput").setAttribute("style", "display:block");

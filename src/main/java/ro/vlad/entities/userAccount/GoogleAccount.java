@@ -1,6 +1,6 @@
 package ro.vlad.entities.userAccount;
 
-public class GoogleUserAccount {
+public class GoogleAccount {
   String id;
   String email;
   boolean verified_email;
@@ -8,10 +8,8 @@ public class GoogleUserAccount {
   String given_name;
   String family_name;
   
-  public String getId()
-  {
-    return this.id;
-  }
+  public String getId() {
+    return this.id; }
   
   public void setId(String id)
   {
@@ -68,10 +66,11 @@ public class GoogleUserAccount {
     this.family_name = family_name;
   }
   
-  public String toString()
-  {
-    return 
-    
-      "GooglePojo [id=" + this.id + ", email=" + this.email + ", verified_email=" + this.verified_email + ", name=" + this.name + ", given_name=" + this.given_name + ", family_name=" + this.family_name + "]";
-  }
+  public String toString() {
+    return "GoogleAccount [id=" + this.id +
+            ", email=" + this.email +
+            ", verified_email=" + this.verified_email +
+            ", name=" + this.name +
+            ", given_name=" + this.given_name +
+            ", family_name=" + this.family_name + "]";}
 }

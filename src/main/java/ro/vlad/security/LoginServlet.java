@@ -40,26 +40,26 @@ public class LoginServlet extends HttpServlet {
         if (userAccountActions.getUserAccountByAccountName(loginUserName) == null) {
             LOGGER.warn("Trying to login with non-existing account...");
             setMessage(req, new Modal(RED, "This account does not exist.", null));}
-            else if (userAccountActions.userAccountWasDeleted(loginUserName)) {
-                LOGGER.warn("Trying to login with deleted account...");
-                setMessage(req, new Modal(RED, "This account was deleted.", null));}
+        else if (userAccountActions.userAccountWasDeleted(loginUserName)) {
+            LOGGER.warn("Trying to login with deleted account...");
+            setMessage(req, new Modal(RED, "This account was deleted.", null));}
+        else {
+            String query = "FROM ro.vlad.entities.userAccount.UserAccount storedUserAccount " + "WHERE storedUserAccount.accountId=" + "\'" +  loginUserName + "\'";
+            UserAccount storedUserAccount = (UserAccount) entityManager.createQuery(query).getSingleResult();
+            try {
+                if (!PasswordStorage.verifyPassword(loginPassword, storedUserAccount.getPasswordHash())) {
+                    LOGGER.warn("Trying to login with wrong password account...");
+                    setMessage(req, new Modal(RED, "Wrong password. Try again.", null));}
                 else {
-                    String query = "FROM ro.vlad.entities.userAccount.UserAccount storedUserAccount " + "WHERE storedUserAccount.accountId=" + "\'" +  loginUserName + "\'";
-                    UserAccount storedUserAccount = (UserAccount) entityManager.createQuery(query).getSingleResult();
-                    try {
-                        if (!PasswordStorage.verifyPassword(loginPassword, storedUserAccount.getPasswordHash())) {
-                            LOGGER.warn("Trying to login with wrong password account...");
-                            setMessage(req, new Modal(RED, "Wrong password. Try again.", null));}
-                            else {
-                                req.getSession().setAttribute("authenticatedUser", loginUserName);
-                                LOGGER.info("Login successfull!");
+                    req.getSession().setAttribute("authenticatedUser", loginUserName);
+                    LOGGER.info("Login successfull!");
 //TODO display User name in the nav bar after login
-                                setMessage(req, new Modal(GREEN , "Welcome!", null));}}
-                    catch (PasswordStorage.CannotPerformOperationException e) {
-                        e.printStackTrace();
-                        LOGGER.error("Something went wrong while verifying password..." + e.toString());}
-                    catch (PasswordStorage.InvalidHashException e) {
-                        e.printStackTrace();
-                        LOGGER.error("Something went wrong with the PasswordHash generator..." + e.toString());}}
+                    setMessage(req, new Modal(GREEN , "Welcome!", null));}}
+            catch (PasswordStorage.CannotPerformOperationException e) {
+                e.printStackTrace();
+                LOGGER.error("Something went wrong while verifying password..." + e.toString());}
+            catch (PasswordStorage.InvalidHashException e) {
+                e.printStackTrace();
+                LOGGER.error("Something went wrong with the PasswordHash generator..." + e.toString());}}
         getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
 }
