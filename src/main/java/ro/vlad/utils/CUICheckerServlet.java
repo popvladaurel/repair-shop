@@ -12,9 +12,7 @@ import java.io.IOException;
 import static ro.vlad.persistence.JpaListener.LOGGER;
 import static ro.vlad.utils.CUICheckerOpenAPI.getKey;
 import static ro.vlad.utils.CUICheckerOpenAPI.setKey;
-import static ro.vlad.utils.Modal.Color.BLUE;
-import static ro.vlad.utils.Modal.Color.GREEN;
-import static ro.vlad.utils.Modal.Color.RED;
+import static ro.vlad.utils.Colors.*;
 import static ro.vlad.utils.Modal.setMessage;
 
 /**

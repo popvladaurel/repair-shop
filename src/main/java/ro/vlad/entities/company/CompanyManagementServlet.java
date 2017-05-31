@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static ro.vlad.persistence.JpaListener.*;
-import static ro.vlad.utils.Modal.Color.*;
+import static ro.vlad.utils.Colors.*;
 import static ro.vlad.utils.Modal.setMessage;
 
 /**

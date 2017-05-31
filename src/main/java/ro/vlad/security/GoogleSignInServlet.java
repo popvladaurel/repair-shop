@@ -23,8 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
-import static ro.vlad.utils.Modal.Color.GREEN;
-import static ro.vlad.utils.Modal.Color.RED;
+import static ro.vlad.utils.Colors.*;
 import static ro.vlad.utils.Modal.setMessage;
 
 @WebServlet(urlPatterns = "/googleSignInServlet", name = "Soo... is Google still evil?")

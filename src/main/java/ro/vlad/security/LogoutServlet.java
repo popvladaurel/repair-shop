@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
-import static ro.vlad.utils.Modal.Color.GREEN;
+import static ro.vlad.utils.Colors.*;
 import static ro.vlad.utils.Modal.setMessage;
 
 /**

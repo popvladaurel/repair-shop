@@ -17,7 +17,7 @@ import java.util.List;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
 import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
-import static ro.vlad.utils.Modal.Color.*;
+import static ro.vlad.utils.Colors.*;
 import static ro.vlad.utils.Modal.setMessage;
 
 /**

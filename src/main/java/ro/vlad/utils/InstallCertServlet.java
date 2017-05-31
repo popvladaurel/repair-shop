@@ -50,7 +50,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
-import static ro.vlad.utils.Modal.Color.GREEN;
+import static ro.vlad.utils.Colors.*;
 import static ro.vlad.utils.Modal.setMessage;
 
 /**
