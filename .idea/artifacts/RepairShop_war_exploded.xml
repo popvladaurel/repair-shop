@@ -71,7 +71,7 @@
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.6" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
-          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.0.0" />
+          <element id="library" level="project" name="Maven: com.h2database:h2:1.4.195" />
         </element>
       </element>
       <element id="directory" name="META-INF">

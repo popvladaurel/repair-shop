@@ -1,4 +1,4 @@
-CREATE DATABASE "RepairShop" TEMPLATE template0
+CREATE DATABASE "RepairShop"
 
 OWNER = postgres
 ENCODING = 'UTF8'

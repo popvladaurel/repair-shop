@@ -7,7 +7,7 @@
 
     <persistence-unit name="RepairShop" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>java:/comp/env/jdbc/RepairShop</non-jta-data-source>
+        <non-jta-data-source>java:/comp/env/jdbc/RepairShopDB</non-jta-data-source>
 
         <class>ro.vlad.entities.address.Address</class>
         <class>ro.vlad.entities.company.Company</class>
@@ -26,7 +26,7 @@
             <!--God damn encoding -->
             <property name="hibernate.connection.charSet" value="utf8" />
             <property name="hibernate.connection.characterEncoding" value="utf8" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
         </properties>
     </persistence-unit>

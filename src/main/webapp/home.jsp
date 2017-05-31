@@ -76,8 +76,8 @@
                     <button class="button" type="submit">New User</button>
                 </form>
                 <!--START logout-->
-                <form action="/logoutServlet">
-                    <button class="button redbutton" type="submit">Logout</button>
+                <form action="${pageContext.request.contextPath}/logoutServlet">
+                    <button class="button redbutton">Logout</button>
                 </form>
             </div>
         </div>
@@ -88,9 +88,9 @@
             <img src="images/customer_128.svg">
             <p style="color:white;">Customer</p>
             <!--START add new customer/person-->
-            <form method="GET" action="/personManagementServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/personManagementServlet">
                 <input type="hidden" name="action" value="addCustomer">
-                <button class="button" type="submit">New Customer</button>
+                <button class="button">New Customer</button>
             </form>
 <!--TODO implement javascript search for customers/person to show an input box for query-->
             <!--START a search for customer/person-->

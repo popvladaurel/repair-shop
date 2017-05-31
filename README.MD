@@ -1,6 +1,11 @@
 RepairShop
 =============================
 
+31.05.2017:  
+````
+Dropped PostgreSQL in favour of H2.
+````
+
 25.05.2017:  
 ````
 Google login is now functional!

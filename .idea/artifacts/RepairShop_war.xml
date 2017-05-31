@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="RepairShop:war">
-    <output-path>$USER_HOME$/Raspberry/apache-tomcat/webapps</output-path>
+    <output-path>$PROJECT_DIR$</output-path>
     <root id="archive" name="repairshop.war">
       <element id="artifact" artifact-name="RepairShop:war exploded" />
     </root>
