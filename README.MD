@@ -1,21 +1,5 @@
 RepairShop
 =============================
-
-31.05.2017:  
-````
-Dropped PostgreSQL in favour of H2.
-````
-
-25.05.2017:  
-````
-Google login is now functional!
-````
-
-24.05.2017:  
-````
-Added button to import ANAF SSL/TLS certificate after deploy into our key store. 
-No more manually messing with JRE's cacerts Certificates File...
-````
 **Screenshots**  
 
 ![Welcome Page](screenshots/welcome_screen.png "Welcome Screen")
