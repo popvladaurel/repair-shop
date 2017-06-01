@@ -2,7 +2,8 @@ function addCompany(){
     //create form with method and action
     var form = document.createElement("form");
     form.setAttribute("method", "POST");
-    form.setAttribute("action", "/companyManagementServlet?action=addCompany")
+    var servletContext = document.getElementById("servletContext").getAttribute("value");
+    form.setAttribute("action", servletContext + "/companyManagementServlet?action=addCompany")
     //create hidden input newCompanyCUI, assign the value and append it to form
     var hiddenCUIinput = document.createElement("input");
     hiddenCUIinput.setAttribute("name", "newCompanyCUI");

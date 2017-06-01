@@ -45,11 +45,8 @@ function changeOpenAPIKey(){
 
 function setupGoogleParameters(){
     document.getElementById("newCLIENT_IDinput").setAttribute("style", "display:block");
-    document.getElementById("newCLIENT_IDinput").setAttribute("onclick", "hidePasswordField()");
     document.getElementById("newCLIENT_SECRETinput").setAttribute("style", "display:block");
-    document.getElementById("newCLIENT_SECRETinput").setAttribute("onclick", "hidePasswordField()");
     document.getElementById("newREDIRECT_URLinput").setAttribute("style", "display:block");
-    document.getElementById("newREDIRECT_URLinput").setAttribute("onclick", "hidePasswordField()");
     document.getElementById("setupbutton").setAttribute("type", "submit");}
 
 function hideKeyInputField() {

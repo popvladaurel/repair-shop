@@ -61,7 +61,7 @@ public class PersonManagementServlet extends HttpServlet {
                         req.setAttribute("newAddress", person.getAddress().getAddress());
                         req.setAttribute("newPhoneNumber", person.getContactDetails().getPhoneNumber());
                         req.setAttribute("newEmail", person.getContactDetails().getEmail());
-                        req.setAttribute("pathToServlet", "/personManagementServlet?action=editAccountInformation");
+                        req.setAttribute("pathToServlet", "${pageContext.request.contextPath}/personManagementServlet?action=editAccountInformation");
                         req.setAttribute("show", "none");
                         req.setAttribute("disabled", "disabled");
                         req.setAttribute("confirmButton", "Update Profile");

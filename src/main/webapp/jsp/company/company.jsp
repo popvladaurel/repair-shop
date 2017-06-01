@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,26 +23,27 @@
         </c:choose>
         <div class="standardform" style="transition:0.5s">
             <div class="phoneContent">
-                <img src="../../images/company_add_128.svg">
+                <img src="images/company_add_128.svg">
             </div>
             <div>
                 <h4>Company Information (required):</h4>
-                <form action="/CUICheckerServlet" method="POST">
-                    <input id="newCompanyCUI" class="inputbox" type="text" placeholder="CUI" value="${newCompanyCUI}" name="newCompanyCUI" autofocus required>
-                    <input id="newJ" class="inputbox" type="text" placeholder="ONRC" value="${newJ}" name="newJ">
-                    <button class="button" style="margin-left:2px" type="submit">Verify Company</button>
+                <form action="${pageContext.request.contextPath}/CUICheckerServlet" method="POST">
+                    <input id="newCompanyCUI" class="inputbox" placeholder="CUI" value="${newCompanyCUI}" name="newCompanyCUI" autofocus required>
+                    <input id="newJ" class="inputbox" placeholder="ONRC" value="${newJ}" name="newJ">
+                    <button class="button" style="margin-left:2px">Verify Company</button>
                 </form>
-                <input id="newCompanyName" class="inputbox inputwide" type="text" placeholder="Name" value="${newCompanyName}" name="newCompanyName" required>
-                <input id="newCompanyAddress" class="inputbox inputwide" type="text" placeholder="Address" value="${newCompanyAddress}" name="newCompanyAddress" required>
-                <input id="newCompanyIBAN" class="inputbox inputwide" type="text" placeholder="IBAN" name="newCompanyIBAN">
-                <input id="newCompanyPhone" class="inputbox inputhalf" type="text" placeholder="Phone" value="${newCompanyPhone}" name="newCompanyPhone">
+                <input id="newCompanyName" class="inputbox inputwide" placeholder="Name" value="${newCompanyName}" name="newCompanyName" required>
+                <input id="newCompanyAddress" class="inputbox inputwide" placeholder="Address" value="${newCompanyAddress}" name="newCompanyAddress" required>
+                <input id="newCompanyIBAN" class="inputbox inputwide" placeholder="IBAN" name="newCompanyIBAN">
+                <input id="newCompanyPhone" class="inputbox inputhalf" placeholder="Phone" value="${newCompanyPhone}" name="newCompanyPhone">
                 <input id="newCompanyEmail" class="inputbox inputspecial inputhalf" type="email" placeholder="email" name="newCompanyEmail">
                 <h4>Validation Messages:</h4>
-                <input class="inputbox inputhalf" type="text" placeholder="OpenAPI validation message" value="${newCompanyState}" name="newCompanyState">
-                <input class="inputbox inputhalf" type="text" placeholder="ANAF validation message" value="${newAnafMessage}" name="newAnafMessage">
-                <input style="display:none" type="text" value="${radiata}" name="radiata">
+                <input class="inputbox inputhalf" placeholder="OpenAPI validation message" value="${newCompanyState}" name="newCompanyState">
+                <input class="inputbox inputhalf" placeholder="ANAF validation message" value="${newAnafMessage}" name="newAnafMessage">
+                <input style="display:none" value="${radiata}" name="radiata">
                 <br>
                 <button type="button" class="button" onclick="location.href='../../home.jsp'">Back</button>
+                <input type="hidden" id="servletContext" value="${pageContext.request.contextPath}">
                 <button class="button ${radiataError}" onclick="${addButtonAction}">${addButtonText}</button>
                 <button class="button redbutton" type="reset">Clear Form</button>
             </div>

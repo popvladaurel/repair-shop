@@ -4,8 +4,8 @@
          version="3.0">
 
     <resource-ref>
-        <description>Derby Connection</description>
-        <res-ref-name>jdbc/RepairShop</res-ref-name>
+        <description>Database Connection</description>
+        <res-ref-name>jdbc/RepairShopDB</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>

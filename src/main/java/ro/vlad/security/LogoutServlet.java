@@ -30,5 +30,5 @@ public class LogoutServlet extends HttpServlet {
             LOGGER.info("Session invalidated!");}
         req.getSession();
         setMessage(req, new Modal(GREEN, "Have a nice day!",  null));
-        resp.sendRedirect("../../home.jsp");}
+        resp.sendRedirect("home.jsp");}
 }

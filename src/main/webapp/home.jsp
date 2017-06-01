@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -40,40 +40,40 @@
             <p style="color:white; display: ${showElement}">Welcome ${userName}</p>
             <!--START login-->
             <div style="display: ${hideElement}">
-                <form method="POST" action="/googleSignInServlet">
+                <form method="POST" action="${pageContext.request.contextPath}/googleSignInServlet">
                     <button class="button googlebutton">Sign in using Google</button>
                 </form>
                 <p style="color:white;">or</p>
-                <form method="POST" action="/loginServlet">
-                    <input class="inputbox" type="text" placeholder="Input Username" name="loginUserName" autofocus required>
+                <form method="POST" action="${pageContext.request.contextPath}/loginServlet">
+                    <input class="inputbox" placeholder="Input Username" name="loginUserName" autofocus required>
                     <input class="inputbox" type="password" placeholder="Input Password" name="loginPassword" required>
-                    <button class="button greenbutton" type="submit">Sign in</button><br>
+                    <button class="button greenbutton">Sign in</button><br>
                 </form>
             </div>
 
             <!--START available account actions-->
             <div style="display: ${showElement}">
                 <!--START edit account-->
-                <form method="GET" action="/personManagementServlet">
+                <form method="GET" action="${pageContext.request.contextPath}/personManagementServlet">
                     <input type="hidden" name="action" value="editAccountInformation">
-                    <button class="button" type="submit">Edit Account</button>
+                    <button class="button">Edit Account</button>
                 </form>
                 <!--START change account password-->
-                <form method="POST" action="/userAccountManagementServlet">
+                <form method="POST" action="${pageContext.request.contextPath}/userAccountManagementServlet">
                     <input type="hidden" name="action" value="changePassword">
                     <input id="newpasswordinput" class="inputbox" style="display:none" type="password" placeholder="Enter New Password" name="newPassword"
                            oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
                     <button id="newpasswordbutton" class="button" onclick="changePassword()">Change Password</button>
                 </form>
                 <!--START delete account-->
-                <form method="POST" action="/userAccountManagementServlet">
+                <form method="POST" action="${pageContext.request.contextPath}/userAccountManagementServlet">
                     <input type="hidden" name="action" value="deleteAccount">
-                    <button class="button" type="submit">Delete Account</button>
+                    <button class="button">Delete Account</button>
                 </form>
                 <!--START add new account-->
-                <form method="GET" action="/userAccountManagementServlet" >
+                <form method="GET" action="${pageContext.request.contextPath}/userAccountManagementServlet" >
                     <input type="hidden" name="action" value="addAccount">
-                    <button class="button" type="submit">New User</button>
+                    <button class="button">New User</button>
                 </form>
                 <!--START logout-->
                 <form action="${pageContext.request.contextPath}/logoutServlet">
@@ -94,9 +94,9 @@
             </form>
 <!--TODO implement javascript search for customers/person to show an input box for query-->
             <!--START a search for customer/person-->
-            <form method="POST" action="/personManagementServlet">
+            <form method="POST" action="${pageContext.request.contextPath}/personManagementServlet">
                 <input type="hidden" name="action" value="listCustomers">
-                <input id="searchforcostumerinput" class="inputbox" style="display:none" type="text" placeholder="Customer name" name="customerToSearch"
+                <input id="searchforcostumerinput" class="inputbox" style="display:none" placeholder="Customer name" name="customerToSearch"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
                 <button id="searchforcostumerbutton" class="button" onclick="searchCustomers()">Search</button>
             </form>
@@ -108,20 +108,20 @@
             <img src="images/company_128.svg">
             <p style="color:white;">Company</p>
             <!--START add new company-->
-            <form method="GET" action="/companyManagementServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/companyManagementServlet">
                 <input type="hidden" name="action" value="addCompany">
-                <button class="button" type="submit">New Company</button>
+                <button class="button">New Company</button>
             </form>
             <!--START list companies-->
-            <form method="GET" action="/companyManagementServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/companyManagementServlet">
                 <input type="hidden" name="action" value="listCompanies">
-                <button class="button" type="submit">View Companies</button>
+                <button class="button">View Companies</button>
             </form>
 <!--TODO implement javascript search for companies to show an input box for query-->
             <!--START search list for companies-->
-            <form method="GET" action="/companyManagementServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/companyManagementServlet">
                 <input type="hidden" name="action" value="listCompanies">
-                <input id="searchforcompanyinput" class="inputbox" style="display:none" type="text" placeholder="Company name" name="companyToSearch"
+                <input id="searchforcompanyinput" class="inputbox" style="display:none" placeholder="Company name" name="companyToSearch"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
                 <button id="searchforcompanyinputbutton" class="button" onclick="listCompanies()">Search</button>
             </form>
@@ -133,30 +133,30 @@
             <img src="images/settings_128.svg">
             <p style="color:white;">Settings</p>
             <!--START change OpenAPI key-->
-            <form method="GET" action="/CUICheckerServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/CUICheckerServlet">
                 <input type="hidden" name="action" value="changeKey">
-                <input id="newkeyinput" class="inputbox" style="display:none" type="text" placeholder="Paste new OpenAPI key" name="openApiKey"
+                <input id="newkeyinput" class="inputbox" style="display:none" placeholder="Paste new OpenAPI key" name="openApiKey"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
                 <button id="newkeybutton" class="button" onclick="changeOpenAPIKey()">Change OpenAPI Key</button>
             </form>
             <!--START show OpenAPI key-->
-            <form method="GET" action="/CUICheckerServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/CUICheckerServlet">
                 <input type="hidden" name="action" value="viewKey">
-                <button class="button" type="submit">View OpenAPI Key</button>
+                <button class="button">View OpenAPI Key</button>
             </form>
             <!--START import ANAF TLS ceritificate-->
-            <form method="GET" action="/InstallCertServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/InstallCertServlet">
                 <input type="hidden" name="action" value="viewKey">
-                <button class="button" type="submit">Import ANAF certificate</button>
+                <button class="button">Import ANAF certificate</button>
             </form>
             <!--START setup Google parameters-->
-            <form method="GET" action="/googleSignInServlet">
+            <form method="GET" action="${pageContext.request.contextPath}/googleSignInServlet">
                 <input type="hidden" name="action" value="setupParameters">
-                <input id="newCLIENT_IDinput" class="inputbox" style="display:none;" type="text" placeholder="Paste your Cliend ID" name="CLIENT_ID"
+                <input id="newCLIENT_IDinput" class="inputbox" style="display:none;" placeholder="Paste your Cliend ID" name="CLIENT_ID"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
-                <input id="newCLIENT_SECRETinput" class="inputbox" style="display:none" type="text" placeholder="Paste your Client Secret" name="CLIENT_SECRET"
+                <input id="newCLIENT_SECRETinput" class="inputbox" style="display:none" placeholder="Paste your Client Secret" name="CLIENT_SECRET"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
-                <input id="newREDIRECT_URLinput" class="inputbox" style="display:none" type="text" placeholder="Paste your Redirect URL" name="REDIRECT_URL"
+                <input id="newREDIRECT_URLinput" class="inputbox" style="display:none" placeholder="Paste your Redirect URL" name="REDIRECT_URL"
                        oninvalid="this.setCustomValidity('Required')" oninput="this.setCustomValidity('')" required autofocus>
                 <button id="setupbutton" class="button" onclick="setupGoogleParameters()">Setup Google Parameters</button>
             </form>
@@ -165,11 +165,11 @@
 
         </div>
         <!--START category buttons-->
-        <div id="preferences" style="display:inline; white-space:nowrap; position:absolute; top:0px; right:0px; margin-right:10px; transition:0.5s; padding-top: 5px;">
+        <div id="preferences" style="display:inline; white-space:nowrap; position:absolute; top:0; right:0; margin-right:10px; transition:0.5s; padding-top: 5px;">
             <input style="height: 48px;" type="image" src="images/user_48.svg" alt="User Actions" onclick="openNav(1, 2, 3, 4)" >
             <br class="phoneContent" style="display: ${showElement}">
-            <input style="display:${showElement}; height:48px;" type="image" src="/images/customer_48.svg" alt="Customer Actions" onclick="openNav(2, 1, 3, 4)">
-            <input style="display:${showElement}; height:48px;" type="image" src="/images/company_48.svg" alt="Company Actions" onclick="openNav(3, 1, 2, 4)">
+            <input style="display:${showElement}; height:48px;" type="image" src="images/customer_48.svg" alt="Customer Actions" onclick="openNav(2, 1, 3, 4)">
+            <input style="display:${showElement}; height:48px;" type="image" src="images/company_48.svg" alt="Company Actions" onclick="openNav(3, 1, 2, 4)">
             <input style="display:${showElement}; height:48px;" type="image" src="images/settings_48.svg" alt="Settings" onclick="openNav(4, 1, 2, 3)">
         </div>
 
@@ -193,7 +193,7 @@
                         <h2 id="modalText">${modal}</h2>
                         <div id="companyActionsButtons" style="display: none; transition: 0.5s;">
                             <button id="detailsButton" type="button" class="button" onclick="">Details</button>
-                            <button id="editButton"type="button" class="button" onclick="">Edit</button>
+                            <button id="editButton" type="button" class="button" onclick="">Edit</button>
                             <button id="removeButton" type="button" class="button" onclick="">Remove</button>
                         </div>
                     </div>
@@ -202,6 +202,6 @@
         </div>
         <script rel="script" media="all" type="text/javascript" src="scripts/modal.js"></script>
         <script rel="script" media="all" type="text/javascript" src="scripts/companyActions.js" charset="UTF-8"></script>
-        <script rel="script" media="all" type="text/javascript" src="jsp/userAccount/userAccountActions.js" charset="UTF-8"></script>
+        <script rel="script" media="all" type="text/javascript" src="scripts/userAccountActions.js" charset="UTF-8"></script>
     </body>
 </html>

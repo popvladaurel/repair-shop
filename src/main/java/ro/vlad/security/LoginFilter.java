@@ -31,7 +31,7 @@ public class LoginFilter implements Filter {
             chain.doFilter(request, response);}
         else {
             LOGGER.error("Not authenticated! You shall not pass! Redirecting to home.jsp...");
-            response.sendRedirect("../../home.jsp");}}
+            response.sendRedirect("home.jsp");}}
 
     public void destroy() {}
 }
