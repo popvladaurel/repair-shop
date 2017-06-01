@@ -1,5 +1,7 @@
-RepairShop
+RepairShop*
 =============================
+*to be renamed
+
 **Screenshots**  
 
 ![Welcome Page](screenshots/welcome_screen.png "Welcome Screen")
@@ -15,4 +17,6 @@ RepairShop
 - password hashing accomplished using [Secure Password Storage v2.0](https://github.com/defuse/password-hashing)
 - programmatically import of HTTPS certificates possible with help from [InstallCert](https://github.com/escline/InstallCert)
 - beautiful icons from [elementary OS icons](https://github.com/elementary/icons)
+
+
 
