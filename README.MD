@@ -2,7 +2,7 @@ RepairShop
 =============================
 **Screenshots**  
 
-![Welcome Page](screenshots/welcome_screen.png "Welcome Screen")
+![Welcome Page](screenshots/login_screen.png "Login Screen")
 
 ![Create a new account](screenshots/new_account.png "New Account")
 
