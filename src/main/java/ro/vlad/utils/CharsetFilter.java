@@ -25,7 +25,7 @@ public class CharsetFilter implements Filter {
             req.setCharacterEncoding("UTF-8");}
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        LOGGER.info("Character encoding used: " + Charset.defaultCharset().toString());
+        //LOGGER.info("Character encoding used: " + Charset.defaultCharset().toString());
         chain.doFilter(req, resp);}
 
     public void destroy() {}

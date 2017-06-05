@@ -25,13 +25,13 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         boolean loggedIn = session != null && session.getAttribute("authenticatedUser") != null;
-        boolean loginRequest = request.getRequestURI().equals("home.jsp");
+        boolean loginRequest = request.getRequestURI().equals("WEB-INF/jsp/home.jsp");
         if (loggedIn || loginRequest) {
             LOGGER.info("Authenticated! You may pass...");
             chain.doFilter(request, response);}
         else {
             LOGGER.error("Not authenticated! You shall not pass! Redirecting to home.jsp...");
-            response.sendRedirect("home.jsp");}}
+            response.sendRedirect("WEB-INF/jsp/home.jsp");}}
 
     public void destroy() {}
 }

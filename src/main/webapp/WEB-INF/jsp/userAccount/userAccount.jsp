@@ -23,7 +23,7 @@
                 <input class="inputbox inputspecial" type="email" placeholder="e-mail (required)" name="newEmail"  value="${newEmail}" required>
                 <input class="inputbox" placeholder="Phone number" name="newPhoneNumber" value="${newPhoneNumber}" required>
                 <input class="inputbox inputwide" placeholder="Address (Street, Number, City)" name="newAddress" value="${newAddress}" required>
-                <button type="button" class="button" onclick="location.href='home.jsp'">Back</button>
+                <button type="button" class="button" onclick="location.href='../home.jsp'">Back</button>
                 <button class="button greenbutton">${confirmButton}</button>
                 <button class="button redbutton" type="reset">Clear Form</button>
             </form>

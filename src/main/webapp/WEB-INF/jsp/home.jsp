@@ -5,10 +5,10 @@
 	<head>
 		<title>RepairShop</title>
 		<link rel="icon" type="image/png" href="images/favicon.png"/>
-        <link rel="stylesheet" media="all" type="text/css" href="styles/modal.css">
-        <link rel="stylesheet" media="all" type="text/css" href="styles/style.css">
-		<link rel="stylesheet" media="all" type="text/css" href="styles/sidebar.css">
-        <script rel="script" media="all" type="text/javascript" src="scripts/sidebar.js"></script>
+        <link rel="stylesheet" media="all" type="text/css" href="../../styles/modal.css">
+        <link rel="stylesheet" media="all" type="text/css" href="../../styles/style.css">
+		<link rel="stylesheet" media="all" type="text/css" href="../../styles/sidebar.css">
+        <script rel="script" media="all" type="text/javascript" src="../../scripts/sidebar.js"></script>
         <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     </head>
@@ -85,7 +85,7 @@
         <!--START Customer actions sideBar-->
         <div id="sidenav2" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav(2)">&times;</a>
-            <img src="images/customer_128.svg">
+            <img src="../../images/customer_128.svg">
             <p style="color:white;">Customer</p>
             <!--START add new customer/person-->
             <form method="GET" action="${pageContext.request.contextPath}/personManagementServlet">
@@ -105,7 +105,7 @@
         <!--START company actions sideBar-->
         <div id="sidenav3" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav(3)">&times;</a>
-            <img src="images/company_128.svg">
+            <img src="../../images/company_128.svg">
             <p style="color:white;">Company</p>
             <!--START add new company-->
             <form method="GET" action="${pageContext.request.contextPath}/companyManagementServlet">
@@ -130,7 +130,7 @@
         <!--START settings sideBar-->
         <div id="sidenav4" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav(4)">&times;</a>
-            <img src="images/settings_128.svg">
+            <img src="../../images/settings_128.svg">
             <p style="color:white;">Settings</p>
             <!--START change OpenAPI key-->
             <form method="GET" action="${pageContext.request.contextPath}/CUICheckerServlet">
@@ -166,11 +166,11 @@
         </div>
         <!--START category buttons-->
         <div id="preferences" style="display:inline; white-space:nowrap; position:absolute; top:0; right:0; margin-right:10px; transition:0.5s; padding-top: 5px;">
-            <input style="height: 48px;" type="image" src="images/user_48.svg" alt="User Actions" onclick="openNav(1, 2, 3, 4)" >
+            <input style="height: 48px;" type="image" src="../../images/user_48.svg" alt="User Actions" onclick="openNav(1, 2, 3, 4)" >
             <br class="phoneContent" style="display: ${showElement}">
-            <input style="display:${showElement}; height:48px;" type="image" src="images/customer_48.svg" alt="Customer Actions" onclick="openNav(2, 1, 3, 4)">
-            <input style="display:${showElement}; height:48px;" type="image" src="images/company_48.svg" alt="Company Actions" onclick="openNav(3, 1, 2, 4)">
-            <input style="display:${showElement}; height:48px;" type="image" src="images/settings_48.svg" alt="Settings" onclick="openNav(4, 1, 2, 3)">
+            <input style="display:${showElement}; height:48px;" type="image" src="../../images/customer_48.svg" alt="Customer Actions" onclick="openNav(2, 1, 3, 4)">
+            <input style="display:${showElement}; height:48px;" type="image" src="../../images/company_48.svg" alt="Company Actions" onclick="openNav(3, 1, 2, 4)">
+            <input style="display:${showElement}; height:48px;" type="image" src="../../images/settings_48.svg" alt="Settings" onclick="openNav(4, 1, 2, 3)">
         </div>
 
         <div id="main" style="transition:0.5s;">
@@ -200,8 +200,8 @@
                 </div>
             </div>
         </div>
-        <script rel="script" media="all" type="text/javascript" src="scripts/modal.js"></script>
-        <script rel="script" media="all" type="text/javascript" src="scripts/companyActions.js" charset="UTF-8"></script>
-        <script rel="script" media="all" type="text/javascript" src="scripts/userAccountActions.js" charset="UTF-8"></script>
+        <script rel="script" media="all" type="text/javascript" src="../../scripts/modal.js"></script>
+        <script rel="script" media="all" type="text/javascript" src="../../scripts/companyActions.js" charset="UTF-8"></script>
+        <script rel="script" media="all" type="text/javascript" src="../../scripts/userAccountActions.js" charset="UTF-8"></script>
     </body>
 </html>

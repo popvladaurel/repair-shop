@@ -35,20 +35,20 @@ public class CUICheckerServlet extends HttpServlet {
             req.setAttribute("newCompanyPhone", openAPIcompanyJSON.get("telefon").toString());
             if ((Boolean) anafAPIcompanyJSON.get("valid")) {
                 req.setAttribute("radiata", (anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
-                setMessage(req, new Modal(GREEN, "Data acquired from ANAF and OpenAPI!", "/jsp/company/company.jsp"));}
+                setMessage(req, new Modal(GREEN, "Data acquired from ANAF and OpenAPI!", "/WEB-INF/jsp/company/company.jsp"));}
             else {
-                setMessage(req, new Modal(GREEN, "Data acquired from OpenAPI!", "/jsp/company/company.jsp"));}}
+                setMessage(req, new Modal(GREEN, "Data acquired from OpenAPI!", "/WEB-INF/jsp/company/company.jsp"));}}
         else if ((Boolean) anafAPIcompanyJSON.get("valid")) {
             req.setAttribute("newCompanyCUI", anafAPIcompanyJSON.get("cui").toString());
             req.setAttribute("newCompanyName", anafAPIcompanyJSON.get("denumire").toString());
             req.setAttribute("newCompanyAddress", anafAPIcompanyJSON.get("adresa").toString());
             req.setAttribute("radiata", (anafAPIcompanyJSON.get("mesaj").equals("nu figureaza in registre ")));
-            setMessage(req, new Modal(GREEN, "Data acquired from ANAF!", "/jsp/company/company.jsp"));}
+            setMessage(req, new Modal(GREEN, "Data acquired from ANAF!", "/WEB-INF/jsp/company/company.jsp"));}
         else {
-            setMessage(req, new Modal(RED, "No API available. Start typing...", "/jsp/company/company.jsp"));}
+            setMessage(req, new Modal(RED, "No API available. Start typing...", "/WEB-INF/jsp/company/company.jsp"));}
         req.setAttribute("newCompanyState", openAPIcompanyJSON.get("mesaj").toString());
         req.setAttribute("newAnafMessage", anafAPIcompanyJSON.get("mesaj").toString());
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
         dispatcher.forward(req, resp);}
 
     @Override
@@ -60,13 +60,13 @@ public class CUICheckerServlet extends HttpServlet {
                 String newOpenAPIKey = req.getParameter("openApiKey");
                 LOGGER.info("Changing OpenAPI key...");
                 setKey(newOpenAPIKey);
-                setMessage(req, new Modal(GREEN, "OpenAPI key changed. Try adding a company", "/jsp/company/company.jsp"));
+                setMessage(req, new Modal(GREEN, "OpenAPI key changed. Try adding a company", "/WEB-INF/jsp/company/company.jsp"));
                 break;
             case "viewKey":
                 LOGGER.info("Getting OpenAPI key...");
                 setMessage(req, new Modal(BLUE, getKey(), null));
                 break;}
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
         dispatcher.forward(req, resp);}
 }
 

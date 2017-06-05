@@ -24,7 +24,7 @@
                     <input class="inputbox inputspecial inputhalf" type="email" placeholder="e-mail" name="newEmail" required>
                     <input class="inputbox inputwide" placeholder="Address" name="newAddress">
                     <br>
-                    <button class="button" onclick="location.href='home.jsp'">Back</button>
+                    <button class="button" onclick="location.href='../home.jsp'">Back</button>
                     <button class="button greenbutton">Add Customer</button>
                     <button class="button redbutton" type="reset">Clear Form</button>
                 </div>

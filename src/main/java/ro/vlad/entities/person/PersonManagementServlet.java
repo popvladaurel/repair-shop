@@ -46,8 +46,8 @@ public class PersonManagementServlet extends HttpServlet {
         switch (action) {
             case "addCustomer":
                 req.setAttribute("pathToServlet", "/personManagementServlet?action=addCustomer");
-                setMessage(req, new Modal(BLUE, "Input all the details and press the \"Add Customer\" button.", "/jsp/person/person.jsp"));
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                setMessage(req, new Modal(BLUE, "Input all the details and press the \"Add Customer\" button.", "/WEB-INF/jsp/person/person.jsp"));
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;
 //TODO Move editing account information to userAccountManagementServlet and replace it with personal information editing
             case "editAccountInformation":
@@ -65,9 +65,9 @@ public class PersonManagementServlet extends HttpServlet {
                         req.setAttribute("show", "none");
                         req.setAttribute("disabled", "disabled");
                         req.setAttribute("confirmButton", "Update Profile");
-                        req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount/userAccount.jsp");
+                        req.setAttribute("pageToShowInTheMainBody", "/WEB-INF/jsp/userAccount/userAccount.jsp");
                         break;}
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}}
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}}
 //TODO implement list and delete
 
     @Override
@@ -86,7 +86,7 @@ public class PersonManagementServlet extends HttpServlet {
                 Person person = new Person(CNP, name, address, contactDetails);
                 personActions.addPerson(person);
                 setMessage(req, new Modal(GREEN, "New customer added!", null));
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;
 //TODO This too belongs in userAccountManagementServlet
             case "editAccountInformation":
@@ -100,6 +100,6 @@ public class PersonManagementServlet extends HttpServlet {
                 entityManager.flush();
                 entityManager.getTransaction().commit();
                 setMessage(req, new Modal(GREEN, "Personal details updated successfully!", null));
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;}}
 }

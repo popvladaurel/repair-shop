@@ -2,6 +2,7 @@ package ro.vlad.security;
 
 import ro.vlad.utils.Modal;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,5 +31,5 @@ public class LogoutServlet extends HttpServlet {
             LOGGER.info("Session invalidated!");}
         req.getSession();
         setMessage(req, new Modal(GREEN, "Have a nice day!",  null));
-        resp.sendRedirect("home.jsp");}
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}
 }

@@ -21,7 +21,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="RepairShop" value="426f2bea-7122-4dfa-885c-08b88405905a" />
+          <factory-entry name="RepairShop" value="f7da6f03-ad22-4375-9570-3718ee41a32b" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

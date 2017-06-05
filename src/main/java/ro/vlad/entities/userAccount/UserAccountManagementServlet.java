@@ -48,8 +48,8 @@ public class UserAccountManagementServlet extends HttpServlet {
                 req.setAttribute("show", "block");
                 req.setAttribute("disabled", "");
                 req.setAttribute("confirmButton", "Add User");
-                req.setAttribute("pageToShowInTheMainBody", "/jsp/userAccount/userAccount.jsp");
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                req.setAttribute("pageToShowInTheMainBody", "/WEB-INF/jsp/userAccount/userAccount.jsp");
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;}}
 
     @Override
@@ -69,12 +69,12 @@ public class UserAccountManagementServlet extends HttpServlet {
                     setMessage(req, new Modal(RED, "This user was invalidated, and cannot be recreated.", null));
                     LOGGER.warn("Failed to add already deleted account.");
 //TODO implement option to restore account
-                    getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
+                    getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}
                 else {
                     userAccountActions.addAccount(req.getParameter("newAccountName"), req.getParameter("newPassword"), person);
                     setMessage(req, new Modal(GREEN, "Account added successfully!", null));
                     LOGGER.info("New account added successfully!");
-                    getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
+                    getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}
                 break;
             case "changePassword":
                 LOGGER.info("Trying to change password...");
@@ -86,7 +86,7 @@ public class UserAccountManagementServlet extends HttpServlet {
                 req.getSession().setAttribute("authenticatedUser", null);
                 setMessage(req, new Modal(GREEN, "Password changed! Login using your new password.", null));
                 LOGGER.info("Password changed! Session invalidated.");
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;
             case "deleteAccount":
                 LOGGER.info("Trying to delete account...");
@@ -95,7 +95,7 @@ public class UserAccountManagementServlet extends HttpServlet {
                     case "admin":
                         setMessage(req, new Modal(RED, "This account cannot be deleted!", null));
                         LOGGER.warn("Cannot delete admin account!");
-                        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                        getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                         break;
                     default:
 //TODO Implement confirmation method
@@ -104,10 +104,10 @@ public class UserAccountManagementServlet extends HttpServlet {
                         setMessage(req, new Modal(RED, "Account deleted and invalidated.", null));
                         entityManagerFactory.getCache().evictAll();
                         LOGGER.info("Account deleted! Session invalidated.");
-                        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                        getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                         break;}
             default:
                 List<UserAccount> userAccountsList = userAccountActions.listAccounts();
                 req.setAttribute("useraccounts", userAccountsList);
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}}
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}}
 }

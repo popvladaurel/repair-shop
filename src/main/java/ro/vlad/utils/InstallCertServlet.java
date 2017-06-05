@@ -112,8 +112,8 @@ public class InstallCertServlet extends HttpServlet {
             e.printStackTrace();}
         catch (KeyManagementException e) {
             e.printStackTrace();}
-        setMessage(req, new Modal(GREEN, "ANAF certificate installed!", "/jsp/company/company.jsp"));
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
+        setMessage(req, new Modal(GREEN, "ANAF certificate installed!", "/WEB-INF/jsp/company/company.jsp"));
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
         dispatcher.forward(req, resp);}
 
     private static final char[] HEXDIGITS = "0123456789abcdef".toCharArray();

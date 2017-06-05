@@ -46,15 +46,15 @@ public class CompanyManagementServlet extends HttpServlet {
                 req.setAttribute("show", "block");
                 req.setAttribute("disabled", "");
                 req.setAttribute("confirmButton", "Add Company");
-                setMessage(req, new Modal(BLUE, "Input company CUI and click the Verify Company button.", "/jsp/company/company.jsp"));
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                setMessage(req, new Modal(BLUE, "Input company CUI and click the Verify Company button.", "/WEB-INF/jsp/company/company.jsp"));
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;
             case "listCompanies":
                 LOGGER.info("Showing all companies...");
                 List<Company> companiesList = companyActions.listCompanies();
                 req.setAttribute("companiesList", companiesList);
-                req.setAttribute("pageToShowInTheMainBody", "/jsp/company/companiesList.jsp");
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                req.setAttribute("pageToShowInTheMainBody", "/WEB-INF/jsp/company/companiesList.jsp");
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;}}
 
     @Override
@@ -68,10 +68,10 @@ public class CompanyManagementServlet extends HttpServlet {
                 String newCompanyCUI = req.getParameter("newCompanyCUI");
                 if (newCompanyCUI == null || newCompanyCUI.equals("")) {
                     LOGGER.error("Tried to add a company without CUI.");
-                    setMessage(req, new Modal(RED, "Please check your data. Invalid or empty CUI field.", "/jsp/company/company.jsp"));}
+                    setMessage(req, new Modal(RED, "Please check your data. Invalid or empty CUI field.", "/WEB-INF/jsp/company/company.jsp"));}
                 else if (companyActions.getCompanyByCUI(newCompanyCUI) != null) {
                         LOGGER.error("Tried to add an already existing company.");
-                        setMessage(req, new Modal(RED, "This company is already in the database!", "/jsp/company/company.jsp"));}
+                        setMessage(req, new Modal(RED, "This company is already in the database!", "/WEB-INF/jsp/company/company.jsp"));}
                     else {
                         LOGGER.info("Starting to add a new company...");
                         String newJ = req.getParameter("newJ");
@@ -89,7 +89,7 @@ public class CompanyManagementServlet extends HttpServlet {
                         companyActions.addCompany(newCompany);
                         setMessage(req, new Modal(GREEN, newCompanyName + " added!", null));
                         LOGGER.info("New company added!");}
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;}}
 }
 

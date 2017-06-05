@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
                     setMessage(req, new Modal(RED, "Wrong password. Try again.", null));}
                 else {
                     req.getSession().setAttribute("authenticatedUser", loginUserName);
-                    LOGGER.info("Login successfull!");
+                    LOGGER.info("Login successful!");
 //TODO display User name in the nav bar after login
                     setMessage(req, new Modal(GREEN , "Welcome!", null));}}
             catch (PasswordStorage.CannotPerformOperationException e) {
@@ -60,5 +60,5 @@ public class LoginServlet extends HttpServlet {
             catch (PasswordStorage.InvalidHashException e) {
                 e.printStackTrace();
                 LOGGER.error("Something went wrong with the PasswordHash generator..." + e.toString());}}
-        getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}
 }

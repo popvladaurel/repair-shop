@@ -4,7 +4,7 @@
 	<head>
 		<title>Open Case</title>
 		<link rel="icon" type="image/png" href="../images/favicon.png"/>
-		<link rel="stylesheet" media="all" type="text/css" href="../styles/style.css">
+		<link rel="stylesheet" media="all" type="text/css" href="../../styles/style.css">
 		<meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>

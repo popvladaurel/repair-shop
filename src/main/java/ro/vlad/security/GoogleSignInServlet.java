@@ -44,7 +44,7 @@ public class GoogleSignInServlet extends HttpServlet {
                 LOGGER.info("Setting Google parameters...");
                 setGoogleParameters(newCLIENT_ID, newCLIENT_SECRET, newREDIRECT_URL);
                 setMessage(req, new Modal(GREEN, "Google setup complete!", null));
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;
             case "login":
                 JSONObject googleJson;
@@ -78,7 +78,7 @@ public class GoogleSignInServlet extends HttpServlet {
                 catch (IOException e) {
                     req.getSession().setAttribute("authenticatedUser", null);
                     setMessage(req, new Modal(RED, "Could not login using Google!", null));}
-                getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;}}
 
     private void setGoogleParameters(String newCLIENT_ID, String newCLIENT_SECRET, String newREDIRECT_URL) {
@@ -90,7 +90,7 @@ public class GoogleSignInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if ((CLIENT_ID == null) || (CLIENT_SECRET == null) || (REDIRECT_URL == null)) {
             setMessage(req, new Modal(RED, "Google parameters not set!", null));
-            getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);}
+            getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}
         else {
             List<NameValuePair> urlParameters = new ArrayList<>(1);
             urlParameters.add(new BasicNameValuePair("client_id", CLIENT_ID));

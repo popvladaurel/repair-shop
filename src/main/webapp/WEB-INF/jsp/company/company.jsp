@@ -42,7 +42,7 @@
                 <input class="inputbox inputhalf" placeholder="ANAF validation message" value="${newAnafMessage}" name="newAnafMessage">
                 <input style="display:none" value="${radiata}" name="radiata">
                 <br>
-                <button type="button" class="button" onclick="location.href='../../home.jsp'">Back</button>
+                <button type="button" class="button" onclick="location.href='../home.jsp'">Back</button>
                 <input type="hidden" id="servletContext" value="${pageContext.request.contextPath}">
                 <button class="button ${radiataError}" onclick="${addButtonAction}">${addButtonText}</button>
                 <button class="button redbutton" type="reset">Clear Form</button>
