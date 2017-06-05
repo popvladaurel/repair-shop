@@ -2,13 +2,9 @@ package ro.vlad.security;
 
 import ro.vlad.utils.Modal;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
@@ -25,11 +21,20 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("Logout detected. Invalidating session...");
+        boolean cookieInvalidated = false;
+        Cookie cookies[] = req.getCookies();
+        if (cookies.length > 0) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("authenticatedUser")) {
+                    cookie.setMaxAge(0);
+                    resp.addCookie(cookie);
+                    cookieInvalidated = true;
+                    LOGGER.info("Cookies nullified!");}}}
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if ((session != null) && cookieInvalidated) {
             session.invalidate();
             LOGGER.info("Session invalidated!");}
         req.getSession();
         setMessage(req, new Modal(GREEN, "Have a nice day!",  null));
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}
+        getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);}
 }
