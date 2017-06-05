@@ -11,11 +11,14 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
+import ro.vlad.entities.userAccount.GoogleAccountActions;
 import ro.vlad.utils.Modal;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static ro.vlad.persistence.JpaListener.LOGGER;
+import static ro.vlad.persistence.JpaListener.PERSISTENCE_FACTORY;
 import static ro.vlad.utils.Colors.*;
 import static ro.vlad.utils.Modal.setMessage;
 
@@ -32,6 +36,16 @@ public class GoogleSignInServlet extends HttpServlet {
     private static String CLIENT_ID;
     private static String CLIENT_SECRET;
     private static String REDIRECT_URL;
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
+    private GoogleAccountActions googleAccountActions;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        entityManagerFactory = (EntityManagerFactory) getServletContext().getAttribute(PERSISTENCE_FACTORY);
+        entityManager = entityManagerFactory.createEntityManager();
+        googleAccountActions = new GoogleAccountActions(entityManager);}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,7 +62,7 @@ public class GoogleSignInServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);
                 break;
             case "login":
-                JSONObject googleJson;
+                JSONObject googleJSON;
                 try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
                     HttpPost request = new HttpPost("https://accounts.google.com/o/oauth2/token");
                     List<NameValuePair> urlParameters = new ArrayList<>(1);
@@ -66,21 +80,22 @@ public class GoogleSignInServlet extends HttpServlet {
                     request.setEntity(new UrlEncodedFormEntity(urlParameters));
                     HttpResponse response = httpClient.execute(request);
                     HttpEntity entity = response.getEntity();
-                    googleJson = new JSONObject(EntityUtils.toString(entity));
-                    System.out.println(googleJson.toString());
-                    String accessToken = googleJson.getString("access_token");
+                    googleJSON = new JSONObject(EntityUtils.toString(entity));
+                    System.out.println(googleJSON.toString());
+                    String accessToken = googleJSON.getString("access_token");
                     request = new HttpPost("https://www.googleapis.com/oauth2/v3/userinfo?access_token=" + accessToken);
                     response = httpClient.execute(request);
                     entity = response.getEntity();
-                    googleJson = new JSONObject(EntityUtils.toString(entity));
-                    System.out.println(googleJson.toString());
-                    Cookie cookie = new Cookie("authenticatedUser", googleJson.getString("sub"));
+                    googleJSON = new JSONObject(EntityUtils.toString(entity));
+                    googleAccountActions.addAccount(googleJSON);
+                    System.out.println(googleJSON.toString());
+                    Cookie cookie = new Cookie("authenticatedUser", googleJSON.getString("sub"));
                     cookie.setMaxAge(30 * 60);
                     resp.addCookie(cookie);
-                    req.getSession().setAttribute("authenticatedUser", googleJson.getString("name"));
-                    req.setAttribute("userName", googleJson.getString("name"));
-                    req.setAttribute("userImage", googleJson.getString("picture"));
-                    setMessage(req, new Modal(GREEN, "Welcome " + googleJson.getString("name"), null));
+                    req.getSession().setAttribute("authenticatedUser", googleJSON.getString("name"));
+                    req.setAttribute("userName", googleJSON.getString("name"));
+                    req.setAttribute("userImage", googleJSON.getString("picture"));
+                    setMessage(req, new Modal(GREEN, "Welcome " + googleJSON.getString("name"), null));
                     getServletContext().getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(req, resp);}
                 catch (IOException e) {
                     req.getSession().setAttribute("authenticatedUser", null);
