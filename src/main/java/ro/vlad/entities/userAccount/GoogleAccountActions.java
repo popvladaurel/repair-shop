@@ -1,11 +1,8 @@
 package ro.vlad.entities.userAccount;
 
 import org.json.JSONObject;
-import ro.vlad.entities.person.Person;
-import ro.vlad.security.PasswordStorage;
 
 import javax.persistence.EntityManager;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -14,7 +11,7 @@ import java.util.List;
 public class GoogleAccountActions {
     private EntityManager entityManager;
 
-    public GoogleAccountActions(EntityManager entityManager){this.entityManager = entityManager;}
+    public GoogleAccountActions(EntityManager entityManager) {this.entityManager = entityManager;}
 
     public void addAccount(JSONObject googleJSON) {
         entityManager.getTransaction().begin();

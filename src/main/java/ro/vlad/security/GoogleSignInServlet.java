@@ -87,6 +87,7 @@ public class GoogleSignInServlet extends HttpServlet {
                     response = httpClient.execute(request);
                     entity = response.getEntity();
                     googleJSON = new JSONObject(EntityUtils.toString(entity));
+//TODO verify account exists in the database
                     googleAccountActions.addAccount(googleJSON);
                     System.out.println(googleJSON.toString());
                     Cookie cookie = new Cookie("authenticatedUser", googleJSON.getString("sub"));
